@@ -65,7 +65,7 @@ export default function Navbar({ settings, navigationSettings }: NavbarProps) {
                         <NavigationMenuItem>
                           <Link 
                             href={resolveHref(item?.pageReference?._type ?? '', item?.pageReference?.slug ?? '') ?? '/'}
-                            className={cn('relative overflow-hidden inline-flex transition-opacity duration-200 group-hover/nav:opacity-40 hover:!opacity-100', {
+                            className={cn('relative overflow-hidden inline-flex transition-opacity duration-200 hover:!opacity-100', {
                               'hover:underline underline-offset-[38px]': !item.isButton,
                               'py-2 px-4 rounded-full text-white bg-blue-600': item.isButton,
                               'text-blue-700': pathname.includes(`/${item.pageReference?.slug ?? ''}`)

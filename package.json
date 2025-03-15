@@ -11,6 +11,7 @@
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
     "@next/third-parties": "^15.1.6",
+    "@portabletext/react": "^3.2.1",
     "@radix-ui/react-collapsible": "^1.1.2",
     "@radix-ui/react-dialog": "^1.1.4",
     "@radix-ui/react-hover-card": "^1.1.2",
@@ -24,6 +25,7 @@
     "clsx": "^2.1.1",
     "embla-carousel": "^8.5.1",
     "embla-carousel-react": "^8.5.1",
+    "framer-motion": "^12.5.0",
     "lucide-react": "^0.460.0",
     "motion": "^11.11.17",
     "next": "^15.1.6",
@@ -43,6 +45,7 @@
     "sanity-plugin-media": "^3.0.1",
     "sanity-plugin-simpler-color-input": "^3.0.0",
     "sharp": "^0.33.5",
+    "styled-components": "^6.1.15",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.24.1"
