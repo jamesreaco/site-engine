@@ -10,7 +10,7 @@ interface SanityRedirect {
 }
 
 export async function fetchRedirects(): Promise<Redirect[]> {
-  const redirects = await client.fetch(`*[_type == "redirect"]`);
+  const redirects = await client.fetch(`*[_type == "redirect" && isEnabled == true)]`);
   
   return redirects
     .filter((r: SanityRedirect) => r.source && r.destination)
