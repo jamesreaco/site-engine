@@ -1,10 +1,11 @@
 import "./globals.css";
+
 import type { Metadata } from "next";
 import { draftMode } from "next/headers";
-import { VisualEditing } from "next-sanity";
 import Container from "@/components/global/container";
 import { sanityFetch, SanityLive } from "@/sanity/lib/live";
 import ClientLayout from "@/components/global/client-layout";
+import { VisualEditing } from "@/components/shared/visual-editing";
 import InstallDemoButton from "@/components/shared/install-demo-button";
 import { DisableDraftMode } from "@/components/shared/disable-draft-mode";
 import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
