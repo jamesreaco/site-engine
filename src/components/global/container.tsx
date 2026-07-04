@@ -16,14 +16,14 @@ const containerVariants = cva(
       variant: 'contained',
     },
   }
-)
+);
 
 interface ContainerProps 
   extends React.HTMLAttributes<HTMLDivElement>, 
   VariantProps<typeof containerVariants>{
     paddingTop?: string,
     paddingBottom?: string,
-  }
+  };
 
 export default function Container(props: ContainerProps) {
 
@@ -33,7 +33,7 @@ export default function Container(props: ContainerProps) {
     paddingTop, 
     paddingBottom, 
     children 
-  } = props
+  } = props;
 
   const paddingTopStyles = {
     'pt-0': paddingTop === 'none', 
@@ -41,7 +41,7 @@ export default function Container(props: ContainerProps) {
     'pt-14 md:pt-16': paddingTop === 'medium',
     'pt-16 md:pt-28': paddingTop === 'default', 
     'pt-16 lg:pt-36': paddingTop === 'large', 
-  }
+  };
 
   const paddingBottomStyles = {
     'pb-0': paddingBottom === 'none', 
@@ -49,7 +49,7 @@ export default function Container(props: ContainerProps) {
     'pb-14 md:pb-16': paddingTop === 'medium',
     'pb-16 md:pb-28': paddingBottom === 'default', 
     'pb-16 lg:pb-36': paddingBottom === 'large'
-  }
+  };
  
   return (
     <div className={cn(
@@ -60,4 +60,4 @@ export default function Container(props: ContainerProps) {
       {children}
     </div>
   )
-}
+};

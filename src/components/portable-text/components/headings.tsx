@@ -1,5 +1,5 @@
 import { Link } from 'lucide-react';
-import Heading from "@/components/shared/heading";
+import Heading from "@/components/shared/Heading";
 import { copyToClipboard, slugify } from "@/lib/utils";
 import { PortableTextBlock } from '@portabletext/types';
 import { PortableTextBlockComponent } from 'next-sanity';
@@ -76,7 +76,7 @@ export const portableTextHeadings: Record<string, PortableTextBlockComponent> = 
       </Heading>
     );
   },
-}
+};
 
 function LinkIcon() {
   return (
@@ -85,4 +85,4 @@ function LinkIcon() {
       className='opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-gray-500'
     />
   )
-}
+};

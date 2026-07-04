@@ -1,9 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import Heading from '@/components/shared/heading';
+import Heading from '@/components/shared/Heading';
 import { AllProjectsQueryResult } from '../../../../../sanity.types';
-import AnimatedUnderline from '@/components/shared/animated-underline';
+import AnimatedUnderline from '@/components/shared/AnimatedUnderline';
 
 export default function ProjectCard({ project }: {
   project: AllProjectsQueryResult[number];

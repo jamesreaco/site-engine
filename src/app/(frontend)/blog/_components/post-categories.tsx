@@ -1,4 +1,5 @@
 "use client"
+
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
@@ -10,7 +11,7 @@ type Blog = NonNullable<
 
 interface PostCategoriesProps {
   categories: Blog['categories'];
-}
+};
 
 export default function PostCategories({ categories }: PostCategoriesProps) {
   return (
@@ -34,7 +35,7 @@ export default function PostCategories({ categories }: PostCategoriesProps) {
       ))}
     </ul>
   )
-}
+};
 
 function CategoryLink({ href, category, children }: {
   href: string;
@@ -59,4 +60,4 @@ function CategoryLink({ href, category, children }: {
       {children}
     </Link>
   )
-}
+};

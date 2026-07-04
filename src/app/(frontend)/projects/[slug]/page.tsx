@@ -9,7 +9,7 @@ import { projectBySlugQuery, projectSlugsQuery } from '@/sanity/lib/queries/docu
 
 interface PageProps {
   params: Promise<{ slug: string }>;
-}
+};
 
 export async function generateStaticParams() {
   const { data } = await sanityFetch({
@@ -18,7 +18,7 @@ export async function generateStaticParams() {
     stega: false,
   });
   return data;
-}
+};
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {  
   const { data: project } = await sanityFetch({
@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!project) { return {} };
 
   return processMetadata({ data: project as ProjectBySlugQueryResult });
-}
+};
 
 export default async function ProjectPage({ params }: PageProps) {
   const { data: project } = await sanityFetch({ 
@@ -47,4 +47,4 @@ export default async function ProjectPage({ params }: PageProps) {
       pageBuilder={project?.pageBuilder ?? []}
     />
   )
-}
+};

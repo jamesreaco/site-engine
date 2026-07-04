@@ -14,7 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
   if (!page) { return {} };
 
   return processMetadata({ data: page as ProjectsPageQueryResult });
-}
+};
 
 export default async function ProjectsPage() {
   const { data: projects } = await sanityFetch({
@@ -24,4 +24,4 @@ export default async function ProjectsPage() {
   return (
     <ProjectGrid projects={projects} />
   )
-}
+};

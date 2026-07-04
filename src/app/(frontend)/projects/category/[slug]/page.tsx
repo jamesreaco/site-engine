@@ -1,12 +1,12 @@
 import { Metadata } from 'next';
+import { CircleSlash } from 'lucide-react';
 import { sanityFetch } from '@/sanity/lib/live';
 import ProjectGrid from '../../_components/project-grid';
 import { projectCategoryBySlugQuery, projectSlugsQuery, projectsByCategoryQuery } from '@/sanity/lib/queries/documents/project';
-import { CircleSlash } from 'lucide-react';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
-}
+};
 
 export async function generateStaticParams() {
   const { data } = await sanityFetch({
@@ -15,7 +15,7 @@ export async function generateStaticParams() {
     stega: false,
   });
   return data;
-}
+};
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
 
@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title: `${category?.title} Projects`,
     description: `Browse our collection of ${category?.title?.toLowerCase()} projects.`
   }
-}
+};
 
 export default async function ProjectsByCategoryPage(props: {
   params: Promise<{ slug: string }>
@@ -50,9 +50,9 @@ export default async function ProjectsByCategoryPage(props: {
         <CircleSlash size={20} className='text-red-500' /> <span className='font-medium antialiased'>No projects found in this category.</span>
       </div>
     )
-  }
+  };
 
   return (
     <ProjectGrid projects={projects} />
   )
-}
+};

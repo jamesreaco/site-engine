@@ -1,9 +1,10 @@
 "use client"
+
 import React from 'react';
 import BlogToolbar from './blog-toolbar';
 import { usePathname } from 'next/navigation';
-import Heading from '@/components/shared/heading';
-import Container from '@/components/global/container';
+import Heading from '@/components/shared/Heading';
+import Container from '@/components/global/Container';
 import { PageBuilder } from '@/components/page-builder';
 import { BlogPageQueryResult } from '../../../../../sanity.types';
 
@@ -44,4 +45,4 @@ export default function BlogLayout({ children, page }: Readonly<{
       </Container>
     </main>
   )
-}
+};

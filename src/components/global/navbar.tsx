@@ -1,21 +1,32 @@
 import React from 'react';
 import Link from 'next/link';
-import Container from './container';
-import { Button } from '../ui/button';
-import useScroll from '@/hooks/use-scroll';
-import SiteLogo from '../shared/site-logo';
-import SlideOutMenu from './slide-out-menu';
+import Container from './Container';
+import { Button } from '../ui/Button';
+import useScroll from '@/hooks/useScroll';
+import SiteLogo from '../shared/SiteLogo';
+import SlideOutMenu from './SlideOutMenu';
 import { usePathname } from 'next/navigation';
 import { cn, resolveHref } from '@/lib/utils';
 import { ChevronRight, Menu } from 'lucide-react';
-import AnimatedText from '../shared/animated-text';
-import { GeneralSettingsQueryResult, NavigationSettingsQueryResult } from '../../../sanity.types';
-import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu";
+import AnimatedText from '../shared/AnimatedText';
+
+import { 
+  GeneralSettingsQueryResult, 
+  NavigationSettingsQueryResult 
+} from '../../../sanity.types';
+
+import { 
+  NavigationMenu, 
+  NavigationMenuContent, 
+  NavigationMenuItem, 
+  NavigationMenuList, 
+  NavigationMenuTrigger 
+} from "@/components/ui/NavigationMenu";
 
 interface NavbarProps {
   settings: GeneralSettingsQueryResult;
   navigationSettings: NavigationSettingsQueryResult;
-}
+};
 
 export default function Navbar({ settings, navigationSettings }: NavbarProps) {
 
@@ -108,4 +119,4 @@ export default function Navbar({ settings, navigationSettings }: NavbarProps) {
       </Container>
     </header>
   )
-}
+};

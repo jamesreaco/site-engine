@@ -87,7 +87,7 @@ export function copyToClipboard(input: string) {
 
 export function formatFieldId(name: string): string {
   return name.toLowerCase().replace(/\s+/g, '-');
-}
+};
 
 export function getAnchorHref({ 
   anchorLocation, 
@@ -102,11 +102,11 @@ export function getAnchorHref({
     return `#${anchorId}`;
   }
   return `/${pageReference?.slug}#${anchorId}`;
-}
+};
 
 export function getPageHref(page: { slug: string; _type?: string }) {
   return `/${page._type ? `${page._type}/` : ''}${page.slug}`;
-}
+};
 
 export function resolveHref(documentType?: string, slug?: string): string | undefined {
   switch (documentType) {
@@ -123,7 +123,7 @@ export function resolveHref(documentType?: string, slug?: string): string | unde
     default:
       return `/${slug}`;
   }
-}
+};
 
 export type PageQueryResult = 
   | PageBySlugQueryResult 
@@ -134,9 +134,7 @@ export type PageQueryResult =
   | ProjectsPageQueryResult
   | ProjectBySlugQueryResult;
   
-export function processMetadata({ data }: {
-  data: PageQueryResult;
-}): Metadata {
+export function processMetadata({ data }: { data: PageQueryResult; }): Metadata {
 
   const { _id: id, title: pageTitle } = data ?? {};
   const { title, description, image, noIndex } = data?.seo ?? {};
@@ -164,4 +162,4 @@ export function processMetadata({ data }: {
   };
 
   return metadata;
-}
+};

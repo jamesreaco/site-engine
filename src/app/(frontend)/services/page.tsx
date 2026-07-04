@@ -14,7 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
   if (!page) { return {} };
 
   return processMetadata({ data: page });
-}
+};
 
 export default async function ServicesPage() {
 
@@ -31,4 +31,4 @@ export default async function ServicesPage() {
       pageBuilder={page?.pageBuilder ?? []}
     />
   )
-}
+};

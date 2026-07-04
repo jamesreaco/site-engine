@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { PostBySlugQueryResult } from "../../../sanity.types";
-import { HoverCard, HoverCardContent, HoverCardTrigger } from "./hover-card";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "./HoverCard";
 
 type Author = NonNullable<
   NonNullable<PostBySlugQueryResult>
@@ -9,7 +9,7 @@ type Author = NonNullable<
 interface AuthorProps {
   author: Author['author'];
   classNames?: string;  
-}
+};
 
 export default function Author({ author, classNames }: AuthorProps) {
 
@@ -39,4 +39,4 @@ export default function Author({ author, classNames }: AuthorProps) {
       </HoverCardContent>
     </HoverCard>
   )
-}
+};

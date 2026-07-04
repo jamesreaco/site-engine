@@ -24,13 +24,13 @@ const headingVariants = cva(
       size: 'xl',
     },
   }
-)
+);
 
 interface HeadingProps 
   extends React.HTMLAttributes<HTMLHeadingElement>, 
   VariantProps<typeof headingVariants> {
     as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
-}
+};
 
 const sizeToComponent = {
   h1: 'h1',
@@ -60,4 +60,4 @@ export default function Heading({
       {children}
     </Component>
   )
-}
+};

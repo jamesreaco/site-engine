@@ -1,16 +1,16 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import Date from '@/components/ui/date';
+import Date from '@/components/ui/Date';
 import { ChevronRight } from 'lucide-react';
-import Author from '@/components/ui/author';
-import Heading from '@/components/shared/heading';
+import Author from '@/components/ui/Author';
+import Heading from '@/components/shared/Heading';
 import { AllPostsQueryResult } from "../../../../../sanity.types";
-import AnimatedUnderline from '@/components/shared/animated-underline';
+import AnimatedUnderline from '@/components/shared/AnimatedUnderline';
 
 interface PostCardProps {
   post: AllPostsQueryResult[number];
-}
+};
 
 export default function PostCard({ post }: PostCardProps) {
 
@@ -43,7 +43,7 @@ export default function PostCard({ post }: PostCardProps) {
       <AnimatedUnderline className='-translate-y-0.5' />
     </article>
   )
-}
+};
 
 function Thumbnail({ image }: {
   image?: {
@@ -65,7 +65,7 @@ function Thumbnail({ image }: {
       />
     </div>
   )
-}
+};
 
 function Category({ children }: { children: React.ReactNode }) {
   return (
@@ -73,7 +73,7 @@ function Category({ children }: { children: React.ReactNode }) {
       {children}
     </div>
   )
-}
+};
 
 function Excerpt({ children }: { children: React.ReactNode }) {
   return (
@@ -81,4 +81,4 @@ function Excerpt({ children }: { children: React.ReactNode }) {
       {children}
     </p>
   )
-}
+};

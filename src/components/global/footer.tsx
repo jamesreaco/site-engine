@@ -1,16 +1,16 @@
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
-import Container from './container';
-import Heading from '../shared/heading';
-import SiteLogo from '../shared/site-logo';
+import Container from './Container';
+import Heading from '../shared/Heading';
+import SiteLogo from '../shared/SiteLogo';
 import { ExternalLink } from 'lucide-react';
-import AnimatedUnderline from '../shared/animated-underline';
+import AnimatedUnderline from '../shared/AnimatedUnderline';
 import { GeneralSettingsQueryResult, NavigationSettingsQueryResult } from '../../../sanity.types';
 
 interface FooterProps {
   settings: GeneralSettingsQueryResult;
   navigationSettings: NavigationSettingsQueryResult;
-}
+};
 
 export default function Footer({ settings, navigationSettings }: FooterProps) {
 
@@ -48,7 +48,7 @@ export default function Footer({ settings, navigationSettings }: FooterProps) {
       </Container>
     </footer>
   )
-}
+};
 
 function FooterColumns({ columns }: {
   columns: Array<{
@@ -112,7 +112,7 @@ function FooterColumns({ columns }: {
       ))}
     </ul>
   )
-}
+};
 
 function LegalMenuItems({ legalMenuItems }: {
   legalMenuItems: Array<{
@@ -143,7 +143,7 @@ function LegalMenuItems({ legalMenuItems }: {
       ))}
     </ul>
   )
-}
+};
 
 function EdgeBlur() {
   return (
@@ -152,4 +152,4 @@ function EdgeBlur() {
       <div className='bg-gradient-to-l from-white to-transparent h-full w-[100px]'></div>
     </div>
   )
-}
+};

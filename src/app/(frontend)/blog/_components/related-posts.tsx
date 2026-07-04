@@ -1,12 +1,12 @@
 import PostGrid from './post-grid';
-import { Button } from '@/components/ui/button';
-import Heading from '@/components/shared/heading';
+import { Button } from '@/components/ui/Button';
+import Heading from '@/components/shared/Heading';
 import { AllPostsQueryResult } from '../../../../../sanity.types';
 
 interface RelatedPostsProps {
   posts: AllPostsQueryResult;
   classNames?: string;
-}
+};
 
 export default function RelatedPosts({ posts }: RelatedPostsProps) {
   return (
@@ -22,4 +22,4 @@ export default function RelatedPosts({ posts }: RelatedPostsProps) {
       <PostGrid posts={posts} />
     </section>
   )
-}
+};

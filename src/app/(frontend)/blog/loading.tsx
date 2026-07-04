@@ -10,7 +10,7 @@ export default function Loading() {
       ))}
     </div>
   )
-}
+};
 
 function CardSkeleton() {
   return (
@@ -33,4 +33,4 @@ function CardSkeleton() {
       </div>
     </article>
   )
-}
+};

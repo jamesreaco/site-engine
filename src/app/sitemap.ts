@@ -30,4 +30,4 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.error("Failed to generate sitemap:", error);
     return [];
   }
-}
+};

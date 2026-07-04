@@ -1,18 +1,19 @@
 "use client"
+
 import Link from 'next/link';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import React, { useState } from 'react';
-import Date from '@/components/ui/date';
-import Author from '@/components/ui/author';
-import Heading from '@/components/shared/heading';
-import BackButton from '@/components/shared/back-button';
+import Date from '@/components/ui/Date';
+import Author from '@/components/ui/Author';
+import Heading from '@/components/shared/Heading';
+import BackButton from '@/components/shared/BackButton';
 import { Tag, ImageIcon, ChevronDown } from 'lucide-react';
 import { PostBySlugQueryResult } from '../../../../../sanity.types';
-import AnimatedUnderline from '@/components/shared/animated-underline';
-import TableOfContents from '@/components/portable-text/table-of-contents';
-import PortableTextEditor from '@/components/portable-text/portable-text-editor';
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import AnimatedUnderline from '@/components/shared/AnimatedUnderline';
+import TableOfContents from '@/components/portable-text/TableOfContents';
+import PortableTextEditor from '@/components/portable-text/PortableTextEditor';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/Collapsible';
 
 type Post = NonNullable<
   NonNullable<PostBySlugQueryResult>
@@ -20,7 +21,7 @@ type Post = NonNullable<
 
 interface PostGridProps {
   post: Post;
-}
+};
 
 export default function PostContent({ post }: PostGridProps) {
 
@@ -77,7 +78,7 @@ export default function PostContent({ post }: PostGridProps) {
       </aside>
     </div>
   )
-}
+};
 
 function Thumbnail({ image }: {
   image?: {
@@ -102,7 +103,7 @@ function Thumbnail({ image }: {
       </div>
     </>
   )
-}
+};
 
 function Category({ category }: {
   category: Post['category'];
@@ -121,7 +122,7 @@ function Category({ category }: {
       </span>
     </Link>
   )
-}
+};
 
 function PostCategories({ categories }: {
   categories: Post['categories'];
@@ -173,4 +174,4 @@ function PostCategories({ categories }: {
       </CollapsibleContent>
     </Collapsible>
   )
-}
+};

@@ -4,7 +4,7 @@ import { AllPostsQueryResult } from "../../../../../sanity.types";
 
 interface PostGridProps {
   posts: AllPostsQueryResult;
-}
+};
 
 export default function PostGrid({ posts }: PostGridProps) {
   return (
@@ -14,4 +14,4 @@ export default function PostGrid({ posts }: PostGridProps) {
       ))}
     </div>
   )
-}
+};

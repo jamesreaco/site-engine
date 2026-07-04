@@ -1,11 +1,12 @@
 'use client'
+
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import React, { useRef } from 'react';
 import { Search, X } from 'lucide-react';
-import { Input } from '@/components/ui/input';
-import { useClickOutside } from '@/hooks/use-click-outside';
-import { highlightMatch, useSearch } from '@/hooks/use-search';
+import { Input } from '@/components/ui/Input';
+import { useClickOutside } from '@/hooks/useClickOutside';
+import { highlightMatch, useSearch } from '@/hooks/useSearch';
 import { BlogPageQueryResult } from '../../../../../sanity.types';
 
 type Blog = NonNullable<
@@ -15,7 +16,7 @@ type Blog = NonNullable<
 interface BlogSearchProps {
   posts: Blog['posts'];
   classNames?: string;
-}
+};
 
 export function BlogSearch({ posts, classNames }: BlogSearchProps) {
 
@@ -32,7 +33,7 @@ export function BlogSearch({ posts, classNames }: BlogSearchProps) {
 
   function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
     setSearchTerm(e.target.value);
-  }
+  };
 
   return (
     <div ref={dropdownRef} className={cn('relative w-full md:max-w-[260px]', classNames)}>
@@ -81,4 +82,4 @@ export function BlogSearch({ posts, classNames }: BlogSearchProps) {
       )}
     </div>
   )
-}
+};

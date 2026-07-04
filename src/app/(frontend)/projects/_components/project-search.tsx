@@ -3,9 +3,9 @@ import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import React, { useRef } from 'react';
 import { Search, X } from 'lucide-react';
-import { Input } from '@/components/ui/input';
-import { useClickOutside } from '@/hooks/use-click-outside';
-import { highlightMatch, useSearch } from '@/hooks/use-search';
+import { Input } from '@/components/ui/Input';
+import { useClickOutside } from '@/hooks/useClickOutside';
+import { highlightMatch, useSearch } from '@/hooks/useSearch';
 import { ProjectsPageQueryResult } from '../../../../../sanity.types';
 
 type Project = NonNullable<

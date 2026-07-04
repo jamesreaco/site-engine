@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { processMetadata } from "@/lib/utils";
 import { sanityFetch } from "@/sanity/lib/live";
-import Container from "@/components/global/container";
+import Container from "@/components/global/Container";
 import { PageBuilder } from "@/components/page-builder";
 import { PageBySlugQueryResult } from "../../../sanity.types";
 import { pageBySlugQuery } from "@/sanity/lib/queries/documents/page";
@@ -18,7 +18,7 @@ export async function generateMetadata(): Promise<Metadata> {
   if (!page) { return {} };
 
   return processMetadata({ data: page as PageBySlugQueryResult });
-}
+};
 
 export default async function Home() {
 
@@ -30,7 +30,7 @@ export default async function Home() {
     <Container className="py-16">
       No Homepage Set...
     </Container>
-  )
+  );
 
   const { data: page } = await sanityFetch({ 
     query: pageBySlugQuery, 
@@ -46,4 +46,4 @@ export default async function Home() {
       />
     </div>
   )
-}
+};

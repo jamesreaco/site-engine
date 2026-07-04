@@ -1,4 +1,5 @@
 "use client"
+
 import { z } from 'zod';
 import { FormType } from '@/types';
 import toast from 'react-hot-toast';
@@ -80,7 +81,7 @@ export default function Form({ form }: { form: FormType; }) {
       </button>
     </form>
   )
-}
+};
 
 function FieldRenderer({ field, register }: { 
   field: NonNullable<FormType['fields']>[number];
@@ -112,4 +113,4 @@ function FieldRenderer({ field, register }: {
     default:
       return null;
   }
-}
+};

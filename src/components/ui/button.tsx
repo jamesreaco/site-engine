@@ -31,7 +31,7 @@ const buttonVariants = cva(
       width: "auto"
     },
   }
-)
+);
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLAnchorElement>,
@@ -44,7 +44,7 @@ export interface ButtonProps
       emailAddress?: ButtonType['buttonEmailAddress'];
       anchorLocation?: ButtonType['buttonAnchorLocation'];
       anchorId?: ButtonType['buttonAnchorId'];
-    }
+    };
 
 const Button = React.forwardRef<HTMLAnchorElement, ButtonProps>(({ 
   children, 
@@ -130,4 +130,4 @@ export { Button, buttonVariants };
 
 function ButtonIcon() {
   return <ArrowRight size={16} className="transition duration-300 group-hover:translate-x-0.5" />
-}
+};

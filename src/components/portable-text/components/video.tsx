@@ -1,4 +1,5 @@
 "use client"
+
 import ReactPlayer from "react-player";
 
 export default function Video({ data }: {
@@ -17,4 +18,4 @@ export default function Video({ data }: {
       </div>
     </div>
   )
-}
+};

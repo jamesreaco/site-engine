@@ -10,7 +10,7 @@ import { AllPostsQueryResult, PostBySlugQueryResult } from '../../../../../sanit
 
 interface PageProps {
   params: Promise<{ slug: string }>;
-}
+};
 
 export async function generateStaticParams() {
   const { data } = await sanityFetch({
@@ -19,7 +19,7 @@ export async function generateStaticParams() {
     stega: false,
   });
   return data;
-}
+};
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { data: post } = await sanityFetch({
@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!post) { return {} };
 
   return processMetadata({ data: post as PostBySlugQueryResult });
-}
+};
 
 export default async function PostPage({ params }: PageProps) {
   const { data: post } = await sanityFetch({ 
@@ -53,4 +53,4 @@ export default async function PostPage({ params }: PageProps) {
       )}
     </>
   )
-}
+};

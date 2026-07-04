@@ -16,4 +16,4 @@ export default async function BlogArchiveLayout({ children }: {
       {children}
     </BlogLayout>
   )
-}
+};
