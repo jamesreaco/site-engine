@@ -40,6 +40,9 @@ export default function MediaBlock(props: MediaBlockProps) {
               width={2400}
               height={1200}
               alt={image?.asset?.altText ?? ''}
+              sizes={stegaClean(backgroundWidth) === 'contained'
+                ? '(max-width: 768px) calc(100vw - 2rem), (max-width: 1280px) calc(100vw - 5rem), 84rem'
+                : '100vw'}
               className='w-full h-full object-cover'
             />
             {overlayType === 'dark' && (

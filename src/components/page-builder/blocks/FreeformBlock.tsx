@@ -73,6 +73,7 @@ export default function FreeformBlock(props: FreeformBlockProps) {
                         width={800}
                         height={800}
                         alt={item?.image?.asset?.altText ?? ''}
+                        sizes="(max-width: 768px) calc(100vw - 5rem), (max-width: 1280px) calc(25vw - 2rem), 20rem"
                         className={cn('object-cover aspect-square rounded-2xl', {
                           'aspect-[3/2]': stegaClean(item?.image?.aspectRatio) === 'rectangle',
                           'aspect-[3/4]': stegaClean(item?.image?.aspectRatio) === 'portrait',

@@ -70,6 +70,7 @@ export default function HeroBlock(props: HeroBlockProps) {
                 height={800}
                 src={image?.asset?.url ?? ''}
                 alt={image?.asset?.altText ?? ''}
+                sizes="(max-width: 768px) calc(100vw - 3rem), (max-width: 1280px) calc(100vw - 7rem), 84rem"
                 className={cn('object-cover rounded-2xl md:rounded-3xl', {
                   'max-h-[30rem]': image?.height === 'short'
                 })}

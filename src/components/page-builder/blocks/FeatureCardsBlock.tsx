@@ -59,6 +59,7 @@ function FeatureCard({ feature }: {
           width={600}
           height={400}
           alt={feature.title ?? ''}
+          sizes="(max-width: 768px) calc(100vw - 4rem), (max-width: 1280px) calc(50vw - 4rem), 28rem"
           className='rounded-2xl h-[280px] object-cover overflow-hidden'
         />
       </div>

@@ -61,6 +61,7 @@ function Thumbnail({ image }: {
         width={800}
         height={800}
         alt={image.altText ?? ''}
+        sizes="(max-width: 768px) calc(100vw - 5rem), (max-width: 1280px) calc(50vw - 4rem), 28rem"
         className='aspect-[3/2] rounded-2xl'
       />
     </div>
