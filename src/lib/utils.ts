@@ -175,5 +175,10 @@ export function processMetadata({ data, path }: { data: PageQueryResult; path?: 
     metadata.robots = 'noindex'
   };
 
+  metadata.robots = {
+    index: !noIndex,
+    follow: !noIndex,
+  };
+
   return metadata;
 };
