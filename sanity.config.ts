@@ -6,13 +6,12 @@ import { structureTool } from 'sanity/structure';
 import { structure } from '@/sanity/lib/structure';
 import { presentationTool } from 'sanity/presentation';
 import { resolve } from '@/sanity/presentation/resolve';
-import { simplerColorInput } from 'sanity-plugin-simpler-color-input'
+import { simplerColorInput } from 'sanity-plugin-simpler-color-input';
+import { apiVersion, dataset, projectId, studioUrl } from '@/sanity/lib/api';
 import { defaultDocumentNode } from '@/sanity/lib/structure/default-document-node';
-import { apiVersion, dataset, projectId, studioUrl, useCdn } from '@/sanity/lib/api';
 
 const config = defineConfig({
   title: process.env.NEXT_PUBLIC_SITE_NAME,
-  useCdn: useCdn,
   dataset: dataset,
   basePath: studioUrl,
   projectId: projectId,
@@ -36,6 +35,6 @@ const config = defineConfig({
     simplerColorInput()
   ],
   schema: schema,
-})
+});
 
-export default config
+export default config;

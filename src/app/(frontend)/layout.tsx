@@ -5,7 +5,7 @@ import { draftMode } from "next/headers";
 import Container from "@/components/global/Container";
 import { sanityFetch, SanityLive } from "@/sanity/lib/live";
 import WebsiteLayout from "@/components/global/WebsiteLayout";
-import { VisualEditing } from "@/components/shared/VisualEditing";
+import { VisualEditing } from "next-sanity/visual-editing";
 import InstallDemoButton from "@/components/shared/InstallDemoButton";
 import { DisableDraftMode } from "@/components/shared/DisableDraftMode";
 import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';

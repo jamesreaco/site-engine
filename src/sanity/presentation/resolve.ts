@@ -11,7 +11,7 @@ export const resolve: PresentationPluginOptions['resolve'] = {
         locations: [
           {
             title: doc?.title || 'Untitled',
-            href: `/${doc?.slug}`,
+            href: doc?.slug === 'home' ? '/' : `/${doc?.slug}`,
           },
         ],
       }),
@@ -61,15 +61,85 @@ export const resolve: PresentationPluginOptions['resolve'] = {
         ],
       }),
     }),
+    servicesPage: defineLocations({
+      select: { title: 'title' },
+      resolve: (doc) => ({
+        locations: [
+          { title: doc?.title || 'Services', href: `/services` },
+        ],
+      }),
+    }),
+    projectsPage: defineLocations({
+      select: { title: 'title' },
+      resolve: (doc) => ({
+        locations: [
+          { title: doc?.title || 'Projects', href: `/projects` },
+        ],
+      }),
+    }),
+    blogPage: defineLocations({
+      select: { title: 'title' },
+      resolve: (doc) => ({
+        locations: [
+          { title: doc?.title || 'Blog', href: `/blog` },
+        ],
+      }),
+    }),
+    postCategory: defineLocations({
+      select: {
+        title: 'title',
+        slug: 'slug.current',
+      },
+      resolve: (doc) => ({
+        locations: [
+          {
+            title: doc?.title || 'Untitled',
+            href: `/blog/category/${doc?.slug}`,
+          },
+          { title: 'Blog', href: `/blog` },
+        ],
+      }),
+    }),
+    projectCategory: defineLocations({
+      select: {
+        title: 'title',
+        slug: 'slug.current',
+      },
+      resolve: (doc) => ({
+        locations: [
+          {
+            title: doc?.title || 'Untitled',
+            href: `/projects/category/${doc?.slug}`,
+          },
+          { title: 'Projects Index', href: `/projects` },
+        ],
+      }),
+    }),
   },
   mainDocuments: defineDocuments([
     {
       route: "/",
-      filter: `_type == 'page' && slug.current == 'home'`,
+      filter: `_type == 'page' && _id == *[_type == 'generalSettings'][0].homePage._ref`,
     },
     {
-      route: "/:slug",
-      filter: `_type == 'page' && slug.current == $slug`,
+      route: "/services",
+      filter: `_type == 'servicesPage'`,
+    },
+    {
+      route: "/projects",
+      filter: `_type == 'projectsPage'`,
+    },
+    {
+      route: "/blog",
+      filter: `_type == 'blogPage'`,
+    },
+    {
+      route: "/blog/category/:slug",
+      filter: `_type == 'postCategory' && slug.current == $slug`,
+    },
+    {
+      route: "/projects/category/:slug",
+      filter: `_type == 'projectCategory' && slug.current == $slug`,
     },
     {
       route: "/projects/:slug",
@@ -83,5 +153,9 @@ export const resolve: PresentationPluginOptions['resolve'] = {
       route: "/blog/:slug",
       filter: `_type == 'post' && slug.current == $slug`,
     },
+    {
+      route: "/:slug",
+      filter: `_type == 'page' && slug.current == $slug`,
+    },
   ]),
-}
+};

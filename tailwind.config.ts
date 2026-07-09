@@ -1,4 +1,6 @@
 import type { Config } from "tailwindcss";
+import typography from "@tailwindcss/typography";
+import tailwindcssAnimate from "tailwindcss-animate";
 
 const config: Config = {
   content: [
@@ -31,8 +33,8 @@ const config: Config = {
     },
   },
   plugins: [
-    require('@tailwindcss/typography'),
-    require("tailwindcss-animate")
+    typography,
+    tailwindcssAnimate
   ],
   future: {
     hoverOnlyWhenSupported: true

@@ -1,9 +1,12 @@
+"use client";
+
 import dynamic from "next/dynamic";
 import { ComponentType } from "react";
 import { PageBuilderType } from "@/types";
-import { createDataAttribute } from "next-sanity";
+import { useOptimistic } from "next-sanity/hooks";
 import { PageBySlugQueryResult } from "../../../sanity.types";
 import { dataset, projectId, studioUrl } from "@/sanity/lib/api";
+import { createDataAttribute, type SanityDocument } from "next-sanity";
 
 const HeroBlock = dynamic(() => import("./blocks/HeroBlock"));
 const HeaderBlock = dynamic(() => import("./blocks/HeaderBlock"));
@@ -46,6 +49,18 @@ const PB_BLOCKS = {
 type BlockType = keyof typeof PB_BLOCKS;
 
 export function PageBuilder({ pageBuilder, id, type }: PageBuilderProps) {
+
+  const blocks = useOptimistic<PageBlock[], SanityDocument<{ pageBuilder?: PageBlock[] }>>(pageBuilder, (currentBlocks, action) => {
+    
+    if (action.id !== id || !action.document.pageBuilder) {
+      return currentBlocks;
+    };
+    
+    return action.document.pageBuilder.map(
+      (block) => currentBlocks.find((b) => b._key === block._key) ?? block,
+    );
+  });
+
   return (
     <div
       data-sanity={createDataAttribute({
@@ -57,7 +72,7 @@ export function PageBuilder({ pageBuilder, id, type }: PageBuilderProps) {
         projectId: projectId,
       }).toString()}
     >
-      {pageBuilder.map((block) => {
+      {blocks.map((block) => {
         const Component = PB_BLOCKS[block._type] as ComponentType<PageBuilderType<BlockType>>;
         return (
           <div

@@ -41,7 +41,7 @@ export default async function Page({ params }: PageProps) {
   return (
     <PageBuilder
       id={page?._id ?? ''}
-      type="servicesPage"
+      type={page?._type ?? ''}
       pageBuilder={page?.pageBuilder ?? []}
     />
   )
