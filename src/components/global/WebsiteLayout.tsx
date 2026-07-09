@@ -1,17 +1,8 @@
-"use client"
-
 import Navbar from './Navbar';
 import Footer from './Footer';
 import { Toaster } from 'react-hot-toast';
-import { usePathname } from 'next/navigation';
 import { Geist, Geist_Mono } from 'next/font/google'
 import { GeneralSettingsQueryResult, NavigationSettingsQueryResult } from '../../../sanity.types';
-
-interface ClientLayoutProps {
-  children: React.ReactNode;
-  settings: GeneralSettingsQueryResult;
-  navigationSettings: NavigationSettingsQueryResult;
-};
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -23,15 +14,17 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 });
 
-export default function ClientLayout({ 
+interface WebsiteLayoutProps {
+  children: React.ReactNode;
+  settings: GeneralSettingsQueryResult;
+  navigationSettings: NavigationSettingsQueryResult;
+};
+
+export default function WebsiteLayout({ 
   children,
   settings,
   navigationSettings,
-}: ClientLayoutProps) {
-
-  const pathname = usePathname();
-  if (pathname.includes('/studio')) return (children);
-  
+}: WebsiteLayoutProps) {
   return (
     <div className={`${geistSans.variable} ${geistMono.variable} font-geistSans antialiased grid min-h-[100dvh] grid-rows-[auto_1fr_auto]`}>
       <Navbar 

@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { draftMode } from "next/headers";
 import Container from "@/components/global/Container";
 import { sanityFetch, SanityLive } from "@/sanity/lib/live";
-import ClientLayout from "@/components/global/ClientLayout";
+import WebsiteLayout from "@/components/global/WebsiteLayout";
 import { VisualEditing } from "@/components/shared/VisualEditing";
 import InstallDemoButton from "@/components/shared/InstallDemoButton";
 import { DisableDraftMode } from "@/components/shared/DisableDraftMode";
@@ -44,12 +44,12 @@ export default async function RootLayout({ children }: Readonly<{
   
   return (
     <body>
-      <ClientLayout 
+      <WebsiteLayout 
         settings={settings}
         navigationSettings={navigationSettings}
       >
         {children}
-      </ClientLayout>
+      </WebsiteLayout>
       <SanityLive />
       {isDraftMode && (
         <>

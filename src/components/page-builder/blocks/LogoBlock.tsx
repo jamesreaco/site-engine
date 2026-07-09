@@ -35,8 +35,8 @@ export default function LogoBlock(props: LogoBlockProps) {
                       target="_blank" rel="noopener noreferrer" 
                     >
                       <Image
-                        width={200}
-                        height={100}
+                        width={150}
+                        height={75}
                         src={item.image?.asset?.url ?? ''}
                         alt={`${item.title} Logo`}
                         className={cn('w-20 md:w-28 object-contain', {
@@ -46,8 +46,8 @@ export default function LogoBlock(props: LogoBlockProps) {
                     </a>
                   ): (
                     <Image
-                      width={200}
-                      height={100}
+                      width={150}
+                      height={75}
                       src={item.image?.asset?.url ?? ''}
                       alt={`${item.title} Logo`}
                       className={cn('w-20 md:w-28 object-contain', {
