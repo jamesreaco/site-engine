@@ -1,6 +1,5 @@
 "use client"
 
-import React from 'react';
 import Image from 'next/image';
 import { cn, scrollToElement } from '@/lib/utils';
 import { usePathname, useRouter } from 'next/navigation';

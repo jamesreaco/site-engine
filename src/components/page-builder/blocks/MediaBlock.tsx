@@ -1,5 +1,3 @@
-"use client"
-
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { stegaClean } from 'next-sanity';
@@ -37,11 +35,11 @@ export default function MediaBlock(props: MediaBlockProps) {
           <div className='absolute inset-0'>
             <Image
               src={image?.asset?.url ?? ''}
-              width={2400}
-              height={1200}
+              width={1280}
+              height={640}
               alt={image?.asset?.altText ?? ''}
               sizes={stegaClean(backgroundWidth) === 'contained'
-                ? '(max-width: 768px) calc(100vw - 2rem), (max-width: 1280px) calc(100vw - 5rem), 84rem'
+                ? '(max-width: 768px) calc(100vw - 2rem), (max-width: 1280px) calc(100vw - 5rem), min(90rem, calc(100vw - 5rem))'
                 : '100vw'}
               className='w-full h-full object-cover'
             />

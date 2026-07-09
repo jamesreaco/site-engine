@@ -1,5 +1,3 @@
-"use client"
-
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { PageBuilderType } from '@/types';
@@ -67,12 +65,12 @@ export default function HeroBlock(props: HeroBlockProps) {
                 priority
                 loading="eager"
                 fetchPriority="high"
-                width={1400}
-                height={800}
+                width={1280}
+                height={720}
                 src={image?.asset?.url ?? ''}
                 alt={image?.asset?.altText ?? ''}
-                sizes="(max-width: 768px) calc(100vw - 3rem), (max-width: 1280px) calc(100vw - 7rem), 84rem"
-                className={cn('object-cover rounded-2xl md:rounded-3xl', {
+                sizes="(max-width: 768px) calc(100vw - 3rem), (max-width: 1280px) calc(100vw - 7rem), calc(min(90rem, 100vw - 5rem) - 3rem)"
+                className={cn('w-full h-auto object-cover rounded-2xl md:rounded-3xl', {
                   'max-h-[30rem]': image?.height === 'short'
                 })}
               />

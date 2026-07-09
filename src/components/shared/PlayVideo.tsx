@@ -1,4 +1,5 @@
-import React from 'react';
+"use client"
+
 import VideoDialog from './VideoDialog';
 
 export default function PlayVideo({ videoUrl }: {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Text, ChevronDown } from "lucide-react";
 import { slugify, truncateText, cn } from "@/lib/utils";
 import AnimatedUnderline from "../shared/AnimatedUnderline";

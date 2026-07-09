@@ -1,3 +1,5 @@
+"use client"
+
 import { Link } from 'lucide-react';
 import Heading from "@/components/shared/Heading";
 import { copyToClipboard, slugify } from "@/lib/utils";

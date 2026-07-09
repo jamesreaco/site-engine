@@ -1,5 +1,3 @@
-"use client"
-
 import { cn } from '@/lib/utils';
 import { stegaClean } from 'next-sanity';
 import { PageBuilderType } from '@/types';

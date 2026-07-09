@@ -1,5 +1,3 @@
-"use client"
-
 import { PageBuilderType } from '@/types';
 import Form from '@/components/shared/Form';
 import Heading from '@/components/shared/Heading';

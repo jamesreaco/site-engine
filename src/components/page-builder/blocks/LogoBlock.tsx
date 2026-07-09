@@ -27,36 +27,40 @@ export default function LogoBlock(props: LogoBlockProps) {
           </div>
           <div className="relative mt-10 md:mt-16 mb-6 md:mb-8 overflow-clip">
             <div className="relative z-30 flex items-center py-4 md:py-10 pl-[4.8rem] gap-16 md:gap-[10rem] w-max animate-logo-marquee border-y border-dashed">
-              {items.map((item, index) => (
-                <div key={item._key + index}>
-                  {item.link ? (
-                    <a 
-                      href={item.link}
-                      target="_blank" rel="noopener noreferrer" 
-                    >
-                      <Image
-                        width={150}
-                        height={75}
-                        src={item.image?.asset?.url ?? ''}
-                        alt={`${item.title} Logo`}
-                        className={cn('w-20 md:w-28 object-contain', {
-                          'w-36 md:w-40': stegaClean(item?.size) === 'large'
-                        })}
-                      />
-                    </a>
-                  ): (
-                    <Image
-                      width={150}
-                      height={75}
-                      src={item.image?.asset?.url ?? ''}
-                      alt={`${item.title} Logo`}
-                      className={cn('w-20 md:w-28 object-contain', {
-                        'w-36 md:w-40': stegaClean(item?.size) === 'large'
-                      })}
-                    />  
-                  )}
-                </div>
-              ))}
+              {items.map((item, index) => {
+
+                const isLarge = stegaClean(item?.size) === 'large';
+                
+                const logoImage = (
+                  <Image
+                    width={isLarge ? 160 : 112}
+                    height={isLarge ? 80 : 56}
+                    src={item.image?.asset?.url ?? ''}
+                    alt={`${item.title} Logo`}
+                    sizes={isLarge
+                      ? '(max-width: 768px) 9rem, 10rem'
+                      : '(max-width: 768px) 5rem, 7rem'}
+                    className={cn('w-20 md:w-28 object-contain', {
+                      'w-36 md:w-40': isLarge
+                    })}
+                  />
+                );
+
+                return (
+                  <div key={item._key + index}>
+                    {item.link ? (
+                      <a 
+                        href={item.link}
+                        target="_blank" rel="noopener noreferrer" 
+                      >
+                        {logoImage}
+                      </a>
+                    ): (
+                      logoImage
+                    )}
+                  </div>
+                );
+              })}
             </div>
             <EdgeBlur />
           </div>
