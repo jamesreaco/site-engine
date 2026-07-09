@@ -17,7 +17,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
   if (!page) { return {} };
 
-  return processMetadata({ data: page as PageBySlugQueryResult });
+  return processMetadata({ data: page as PageBySlugQueryResult, path: '/' });
 };
 
 export default async function Home() {

@@ -116,10 +116,16 @@ export function resolveHref(documentType?: string, slug?: string): string | unde
       return slug ? `/${slug}` : undefined;
     case 'service':
       return slug ? `/services/${slug}` : undefined;
+    case 'servicesPage':
+      return '/services';
     case 'project':
       return slug ? `/projects/${slug}` : undefined;
+    case 'projectsPage':
+      return '/projects';
     case 'post':
       return slug ? `/blog/${slug}` : undefined;
+    case 'blogPage':
+      return '/blog';
     default:
       return `/${slug}`;
   }
@@ -134,9 +140,9 @@ export type PageQueryResult =
   | ProjectsPageQueryResult
   | ProjectBySlugQueryResult;
   
-export function processMetadata({ data }: { data: PageQueryResult; }): Metadata {
+export function processMetadata({ data, path }: { data: PageQueryResult; path?: string; }): Metadata {
 
-  const { _id: id, title: pageTitle } = data ?? {};
+  const { _id: id, _type: type, title: pageTitle, slug } = data ?? {};
   const { title, description, image, noIndex } = data?.seo ?? {};
 
   const metadata: Metadata = {
@@ -155,6 +161,14 @@ export function processMetadata({ data }: { data: PageQueryResult; }): Metadata 
       width: 1200,
       height: 630,
     },
+  };
+
+  const canonicalPath = path ?? resolveHref(type, slug ?? undefined);
+
+  if (canonicalPath) {
+    metadata.alternates = {
+      canonical: `${process.env.NEXT_PUBLIC_SITE_URL}${canonicalPath}`,
+    };
   };
 
   if (noIndex) {
