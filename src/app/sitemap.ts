@@ -12,20 +12,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       ? `https://${process.env.VERCEL_URL}`
       : "http://localhost:3000";
 
-      return [
-        {
-          url: baseUrl,
-          lastModified: new Date(),
-          changeFrequency: "weekly",
-          priority: 1,
-        },
-        ...paths.map((path: { href: string; _updatedAt: string }) => ({
-          url: new URL(path.href!, baseUrl).toString(),
+    return [
+      {
+        url: baseUrl,
+        lastModified: new Date(),
+        changeFrequency: "weekly",
+        priority: 1,
+      },
+      ...paths
+        .filter((path): path is typeof path & { href: string } => path.href != null)
+        .map((path) => ({
+          url: new URL(path.href, baseUrl).toString(),
           lastModified: new Date(path._updatedAt),
           changeFrequency: "weekly" as const,
           priority: 1,
         })),
-      ];
+    ];
   } catch (error) {
     console.error("Failed to generate sitemap:", error);
     return [];

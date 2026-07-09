@@ -65,6 +65,7 @@ export default function HeroBlock(props: HeroBlockProps) {
             <div className='overflow-hidden relative h-full w-full rounded-3xl md:rounded-4xl'>
               <Image
                 priority
+                loading="eager"
                 fetchPriority="high"
                 width={1400}
                 height={800}

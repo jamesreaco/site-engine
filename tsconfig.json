@@ -14,7 +14,7 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "incremental": true,
     "plugins": [
       {
@@ -34,7 +34,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/sanity/schemas/page-builder/blocks/feature-block.ts",
-    "src/sanity/schemas/objects/single-image.ts"
+    "src/sanity/schemas/objects/single-image.ts",
+    ".next/dev/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"

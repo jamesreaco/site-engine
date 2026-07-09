@@ -36,6 +36,8 @@ export default function SiteLogo({ settings, location, theme }: {
       ): (
         <Image
           priority
+          loading="eager"
+          fetchPriority="high"
           width={140}
           height={140}
           src={siteLogo?.asset?.url ?? ''}
