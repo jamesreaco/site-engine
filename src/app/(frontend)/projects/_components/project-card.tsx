@@ -28,7 +28,7 @@ export default function ProjectCard({ project }: {
       <AnimatedUnderline className='-translate-y-0.5' />
     </article>
   )
-}
+};
 
 function Thumbnail({ image }: {
   image?: {
@@ -47,15 +47,15 @@ function Thumbnail({ image }: {
       />
     </div>
   )
-}
+};
 
 function Category({ children }: { children: React.ReactNode }) {
   return (
-    <div className='z-10 absolute top-10 left-10 px-1.5 rounded-md text-sm font-medium text-nowrap bg-white'>
+    <span className='z-10 absolute top-10 left-10 px-1.5 rounded-md text-sm font-medium text-nowrap bg-white'>
       {children}
-    </div>
+    </span>
   )
-}
+};
 
 function Excerpt({ children }: { children: React.ReactNode }) {
   return (
@@ -63,4 +63,4 @@ function Excerpt({ children }: { children: React.ReactNode }) {
       {children}
     </p>
   )
-}
+};

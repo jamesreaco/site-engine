@@ -3,7 +3,7 @@ import { AllProjectsQueryResult } from '../../../../../sanity.types';
 
 interface ProjectGridProps {
   projects: AllProjectsQueryResult;
-}
+};
 
 export default function ProjectGrid({ projects }: ProjectGridProps) {
   return (
@@ -16,4 +16,4 @@ export default function ProjectGrid({ projects }: ProjectGridProps) {
       ))}
     </div>
   )
-}
+};

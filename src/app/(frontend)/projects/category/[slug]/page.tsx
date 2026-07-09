@@ -2,7 +2,12 @@ import { Metadata } from 'next';
 import { CircleSlash } from 'lucide-react';
 import { sanityFetch } from '@/sanity/lib/live';
 import ProjectGrid from '../../_components/project-grid';
-import { projectCategoryBySlugQuery, projectSlugsQuery, projectsByCategoryQuery } from '@/sanity/lib/queries/documents/project';
+
+import { 
+  projectCategoryBySlugQuery, 
+  projectSlugsQuery, 
+  projectsByCategoryQuery 
+} from '@/sanity/lib/queries/documents/project';
 
 interface PageProps {
   params: Promise<{ slug: string }>;

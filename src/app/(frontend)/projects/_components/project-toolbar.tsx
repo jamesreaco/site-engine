@@ -10,7 +10,7 @@ type Project = NonNullable<
 interface ProjectToolbarProps {
   categories?: Project["categories"];
   projects?: Project['projects']; 
-}
+};
 
 export default function ProjectToolbar({ categories, projects }: ProjectToolbarProps) {
   return (
@@ -23,7 +23,7 @@ export default function ProjectToolbar({ categories, projects }: ProjectToolbarP
       </div>
     </>
   )
-}
+};
 
 function EdgeBlur() {
   return (
@@ -32,4 +32,4 @@ function EdgeBlur() {
       <div className='bg-gradient-to-l from-white to-transparent h-full w-[100px]'></div>
     </div>
   )
-}
+};

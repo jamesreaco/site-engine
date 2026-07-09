@@ -1,4 +1,5 @@
 "use client"
+
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
@@ -10,7 +11,7 @@ type Project = NonNullable<
 
 interface ProjectCategoriesProps {
   categories: Project['categories'];
-}
+};
 
 export default function ProjectCategories({ categories }: ProjectCategoriesProps) {
   return (
@@ -34,7 +35,7 @@ export default function ProjectCategories({ categories }: ProjectCategoriesProps
       ))}
     </ul>
   )
-}
+};
 
 function CategoryLink({ href, category, children }: {
   href: string;
@@ -59,4 +60,4 @@ function CategoryLink({ href, category, children }: {
       {children}
     </Link>
   )
-}
+};

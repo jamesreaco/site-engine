@@ -1,4 +1,5 @@
 "use client"
+
 import React from 'react';
 import { usePathname } from 'next/navigation';
 import ProjectToolbar from './project-toolbar';
@@ -35,11 +36,11 @@ export default function ProjectsLayout({ children, page }: Readonly<{
         pageBuilder={page?.pageBuilder ?? []}
       />
     </main>
-  )
+  );
 
   return (
     <>
       {children}
     </>
-  )
-}
+  );
+};

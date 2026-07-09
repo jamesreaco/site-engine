@@ -1,4 +1,5 @@
 'use client'
+
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import React, { useRef } from 'react';
@@ -15,7 +16,7 @@ type Project = NonNullable<
 interface ProjectSearchProps {
   projects: Project['projects'];
   classNames?: string;
-}
+};
 
 export function ProjectSearch({ projects, classNames }: ProjectSearchProps) {
 
@@ -32,7 +33,7 @@ export function ProjectSearch({ projects, classNames }: ProjectSearchProps) {
 
   function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
     setSearchTerm(e.target.value);
-  }
+  };
 
   return (
     <div ref={dropdownRef} className={cn('relative w-full md:max-w-[260px]', classNames)}>
@@ -81,4 +82,4 @@ export function ProjectSearch({ projects, classNames }: ProjectSearchProps) {
       )}
     </div>
   )
-}
+};
