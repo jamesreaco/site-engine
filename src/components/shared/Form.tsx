@@ -27,7 +27,7 @@ export default function Form({ form }: { form: FormType; }) {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<FormValues>({
     resolver: zodResolver(formSchema),
   });
@@ -50,8 +50,8 @@ export default function Form({ form }: { form: FormType; }) {
       reset();
       toast.success('Message Sent');
       
-    } catch (error) {
-      toast.error(error);
+    } catch {
+      toast.error('Failed to send message');
     }
   };
 
@@ -75,9 +75,16 @@ export default function Form({ form }: { form: FormType; }) {
       ))}
       <button
         type="submit"
-        className="group w-full flex items-center justify-between gap-2 px-6 py-3 rounded-full text-white bg-blue-700 hover:bg-blue-600 transition-all duration-300"
+        disabled={isSubmitting}
+        className="group w-full flex items-center justify-between gap-2 px-6 py-3 rounded-full text-white bg-blue-700 hover:bg-blue-600 disabled:opacity-70 disabled:cursor-not-allowed transition-all duration-300"
       >
-        <span className='font-medium text-sm'>{submitButtonText}</span> <ArrowRight size={16} className='group-hover:translate-x-1 transition-transform duration-300' />
+        <span className='font-medium text-sm'>
+          {isSubmitting ? 'Submitting...' : submitButtonText}
+        </span> 
+        <ArrowRight 
+          size={16} 
+          className='group-hover:translate-x-1 transition-transform duration-300' 
+        />
       </button>
     </form>
   )
