@@ -64,8 +64,8 @@ export default function SlideOutMenu({ children, settings, navigationSettings }:
                     </CollapsibleTrigger>
                     <CollapsibleContent className="flex flex-col gap-y-1 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 transition-all duration-200">
                       {item?.pageReferences?.map((item) => (
-                        <SheetClose key={item.title}>
-                          <button 
+                        <SheetClose key={item.title} asChild>
+                          <button
                             onClick={() => {
                               router.push(resolveHref(item._type ?? '', item.slug ?? '') ?? '/');
                               setOpenItems(prev => ({ ...prev, [item.title ?? '']: false }));
@@ -80,8 +80,8 @@ export default function SlideOutMenu({ children, settings, navigationSettings }:
                     </CollapsibleContent>
                   </Collapsible>
                 ): (
-                  <SheetClose>
-                    <button 
+                  <SheetClose asChild>
+                    <button
                       onClick={() => (
                         router.push(resolveHref(item.pageReference?._type ?? '', item.pageReference?.slug ?? '') ?? '/')
                       )}
