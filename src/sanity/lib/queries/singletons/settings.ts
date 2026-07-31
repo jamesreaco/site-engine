@@ -1,7 +1,10 @@
 import { defineQuery } from "next-sanity";
 
+export const twitterHandleQuery = defineQuery(`*[_type == 'generalSettings'][0].twitterHandle`);
+
 export const generalSettingsQuery = defineQuery(`*[_type == 'generalSettings'][0] {
   siteTitle,
+  twitterHandle,
   siteLogo { 
     asset->{ url },
   },

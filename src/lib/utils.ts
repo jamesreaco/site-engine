@@ -4,6 +4,8 @@ import { ButtonType } from '@/types';
 import { ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { urlForImage } from '@/sanity/lib/utils';
+import { client } from '@/sanity/lib/client';
+import { twitterHandleQuery } from '@/sanity/lib/queries/singletons/settings';
 
 import { 
   BlogPageQueryResult, 
@@ -140,12 +142,15 @@ export type PageQueryResult =
   | ProjectsPageQueryResult
   | ProjectBySlugQueryResult;
   
-export function processMetadata({ data, path }: { data: PageQueryResult; path?: string; }): Metadata {
+export async function processMetadata({ data, path }: { data: PageQueryResult; path?: string; }): Promise<Metadata> {
 
   const { _id: id, _type: type, title: pageTitle, slug } = data ?? {};
   const { title, description, image, noIndex } = data?.seo ?? {};
 
   const metadata: Metadata = {
+    metadataBase: process.env.NEXT_PUBLIC_SITE_URL
+      ? new URL(process.env.NEXT_PUBLIC_SITE_URL)
+      : undefined,
     title: {
       template: `${title ? title : pageTitle} | ${process.env.NEXT_PUBLIC_SITE_NAME}`,
       default: `${title ? title : pageTitle}`,
@@ -153,7 +158,25 @@ export function processMetadata({ data, path }: { data: PageQueryResult; path?: 
     description,
   };
 
+  const canonicalPath = path ?? resolveHref(type, slug ?? undefined);
+
+  const twitterHandle = await client.fetch(
+    twitterHandleQuery,
+    {},
+    { stega: false },
+  );
+
+  metadata.twitter = {
+    card: 'summary_large_image',
+    site: twitterHandle ?? undefined,
+  };
+
   metadata.openGraph = {
+    type: type === 'post' ? 'article' : 'website',
+    url: canonicalPath,
+    title: title ?? pageTitle ?? undefined,
+    description: description ?? undefined,
+    siteName: process.env.NEXT_PUBLIC_SITE_NAME,
     images: {
       url: image
         ? urlForImage(image)?.width(1200).height(630).url() as string
@@ -162,8 +185,6 @@ export function processMetadata({ data, path }: { data: PageQueryResult; path?: 
       height: 630,
     },
   };
-
-  const canonicalPath = path ?? resolveHref(type, slug ?? undefined);
 
   if (canonicalPath) {
     metadata.alternates = {

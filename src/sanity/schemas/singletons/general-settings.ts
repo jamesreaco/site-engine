@@ -40,6 +40,17 @@ export default defineType({
       group: 'companyDetails'
     }),
     defineField({
+      title: 'X (Twitter) Handle',
+      name: 'twitterHandle',
+      type: 'string',
+      group: 'companyDetails',
+      description: 'Your site\'s X (Twitter) username, including the @ symbol (e.g. @yourhandle). Used for the twitter:site meta tag when pages are shared on X.',
+      validation: (rule) => rule.custom((value) => {
+        if (!value) return true;
+        return /^@\w{1,15}$/.test(value) || 'Must be a valid handle starting with @ (e.g. @yourhandle)';
+      }),
+    }),
+    defineField({
       name: 'companySocialMediaLinks',
       title: 'Social Media Links',
       type: 'array',
