@@ -70,7 +70,7 @@ export default function SlideOutMenu({ children, settings, navigationSettings }:
                               router.push(resolveHref(item._type ?? '', item.slug ?? '') ?? '/');
                               setOpenItems(prev => ({ ...prev, [item.title ?? '']: false }));
                             }}
-                            className='relative block text-xl tracking-tight text-gray-500 hover:text-black group'
+                            className='relative block w-fit text-left text-xl tracking-tight text-gray-500 hover:text-black group'
                           >
                             {item.title}
                             <AnimatedUnderline className='h-[1.5px] bg-gray-500 group-hover:bg-black' />
@@ -85,7 +85,7 @@ export default function SlideOutMenu({ children, settings, navigationSettings }:
                       onClick={() => (
                         router.push(resolveHref(item.pageReference?._type ?? '', item.pageReference?.slug ?? '') ?? '/')
                       )}
-                      className='relative block text-3xl tracking-tight group'
+                      className='relative block w-fit text-left text-3xl tracking-tight group'
                     >
                       {item.title}
                       <AnimatedUnderline className='h-[2px]' />
