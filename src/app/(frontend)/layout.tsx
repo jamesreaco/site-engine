@@ -37,9 +37,11 @@ export default async function RootLayout({ children }: Readonly<{
   ]);
 
   if (!settings) return (
-    <Container className="py-16 flex items-center justify-center gap-2.5 h-screen pattern-bg--2">
-      <InstallDemoButton />
-    </Container>
+    <body>
+      <Container className="py-16 flex items-center justify-center gap-2.5 h-screen pattern-bg--2">
+        <InstallDemoButton />
+      </Container>
+    </body>
   );
   
   return (
