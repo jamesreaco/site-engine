@@ -9,7 +9,7 @@ import Author from '@/components/ui/Author';
 import Heading from '@/components/shared/Heading';
 import BackButton from '@/components/shared/BackButton';
 import { Tag, ImageIcon, ChevronDown } from 'lucide-react';
-import { PostBySlugQueryResult } from '../../../../../sanity.types';
+import { PostBySlugQueryResult } from '../../../sanity.types';
 import AnimatedUnderline from '@/components/shared/AnimatedUnderline';
 import TableOfContents from '@/components/portable-text/TableOfContents';
 import PortableTextEditor from '@/components/portable-text/PortableTextEditor';

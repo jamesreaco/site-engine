@@ -1,6 +1,6 @@
 import React from 'react';
-import PostCard from './post-card';
-import { AllPostsQueryResult } from "../../../../../sanity.types";
+import PostCard from './PostCard';
+import { AllPostsQueryResult } from "../../../sanity.types";
 
 interface PostGridProps {
   posts: AllPostsQueryResult;

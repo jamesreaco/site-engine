@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { CircleSlash } from 'lucide-react';
 import { sanityFetch } from '@/sanity/lib/live';
-import ProjectGrid from '../../_components/project-grid';
+import ProjectGrid from '@/components/projects/ProjectGrid';
 
 import { 
   projectCategoryBySlugQuery, 

@@ -2,11 +2,11 @@
 
 import React from 'react';
 import { usePathname } from 'next/navigation';
-import ProjectToolbar from './project-toolbar';
+import ProjectToolbar from './ProjectToolbar';
 import Heading from '@/components/shared/Heading';
 import Container from '@/components/global/Container';
 import { PageBuilder } from '@/components/page-builder';
-import { ProjectsPageQueryResult } from '../../../../../sanity.types';
+import { ProjectsPageQueryResult } from '../../../sanity.types';
 
 export default function ProjectsLayout({ children, page }: Readonly<{
   children: React.ReactNode;

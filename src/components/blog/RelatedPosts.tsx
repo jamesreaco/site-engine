@@ -1,7 +1,7 @@
-import PostGrid from './post-grid';
+import PostGrid from './PostGrid';
 import { Button } from '@/components/ui/Button';
 import Heading from '@/components/shared/Heading';
-import { AllPostsQueryResult } from '../../../../../sanity.types';
+import { AllPostsQueryResult } from '../../../sanity.types';
 
 interface RelatedPostsProps {
   posts: AllPostsQueryResult;

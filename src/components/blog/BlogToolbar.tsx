@@ -1,7 +1,7 @@
 import React from 'react';
-import { BlogSearch } from './blog-search';
-import PostCategories from './post-categories';
-import { BlogPageQueryResult } from '../../../../../sanity.types';
+import { BlogSearch } from './BlogSearch';
+import PostCategories from './PostCategories';
+import { BlogPageQueryResult } from '../../../sanity.types';
 
 type Blog = NonNullable<
   NonNullable<BlogPageQueryResult>

@@ -7,7 +7,7 @@ import { Search, X } from 'lucide-react';
 import { Input } from '@/components/ui/Input';
 import { useClickOutside } from '@/hooks/useClickOutside';
 import { highlightMatch, useSearch } from '@/hooks/useSearch';
-import { BlogPageQueryResult } from '../../../../../sanity.types';
+import { BlogPageQueryResult } from '../../../sanity.types';
 
 type Blog = NonNullable<
   NonNullable<BlogPageQueryResult>

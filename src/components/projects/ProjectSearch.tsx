@@ -7,7 +7,7 @@ import { Search, X } from 'lucide-react';
 import { Input } from '@/components/ui/Input';
 import { useClickOutside } from '@/hooks/useClickOutside';
 import { highlightMatch, useSearch } from '@/hooks/useSearch';
-import { ProjectsPageQueryResult } from '../../../../../sanity.types';
+import { ProjectsPageQueryResult } from '../../../sanity.types';
 
 type Project = NonNullable<
   NonNullable<ProjectsPageQueryResult>

@@ -3,8 +3,8 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { processMetadata } from '@/lib/utils';
 import { sanityFetch } from '@/sanity/lib/live';
-import PostContent from '../_components/post-content';
-import RelatedPosts from '../_components/related-posts';
+import PostContent from '@/components/blog/PostContent';
+import RelatedPosts from '@/components/blog/RelatedPosts';
 import { postBySlugQuery, postSlugsQuery } from '@/sanity/lib/queries/documents/post';
 import { AllPostsQueryResult, PostBySlugQueryResult } from '../../../../../sanity.types';
 

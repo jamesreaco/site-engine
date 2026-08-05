@@ -3,30 +3,30 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
-import { BlogPageQueryResult } from "../../../../../sanity.types";
+import { ProjectsPageQueryResult } from "../../../sanity.types";
 
-type Blog = NonNullable<
-  NonNullable<BlogPageQueryResult>
+type Project = NonNullable<
+  NonNullable<ProjectsPageQueryResult>
 >;
 
-interface PostCategoriesProps {
-  categories: Blog['categories'];
+interface ProjectCategoriesProps {
+  categories: Project['categories'];
 };
 
-export default function PostCategories({ categories }: PostCategoriesProps) {
+export default function ProjectCategories({ categories }: ProjectCategoriesProps) {
   return (
     <ul className='relative z-20 flex items-center justify-start gap-0 md:gap-2'>
       <li className="text-nowrap">
         <CategoryLink
-          href={`/blog`}
+          href={`/projects`}
         >
-          All Posts
+          All Projects
         </CategoryLink>
       </li>
-      {categories.map((category) => (
+      {categories?.map((category) => (
         <li key={category._id} className="text-nowrap">
           <CategoryLink
-            href={`/blog/category/${category.slug}`}
+            href={`/projects/category/${category.slug}`}
             category={category}
           >
             {category.title}
@@ -40,14 +40,14 @@ export default function PostCategories({ categories }: PostCategoriesProps) {
 function CategoryLink({ href, category, children }: {
   href: string;
   children: React.ReactNode;
-  category?: Blog['categories'][number];
+  category?: Project['categories'][number];
 }) {
 
   const pathname = usePathname();
 
   const isActive = category 
-    ? pathname === `/blog/category/${category.slug}`
-    : pathname === '/blog';
+    ? pathname === `/projects/category/${category.slug}`
+    : pathname === '/projects';
 
   return (
     <Link 

@@ -5,7 +5,7 @@ import Date from '@/components/ui/Date';
 import { ChevronRight } from 'lucide-react';
 import Author from '@/components/ui/Author';
 import Heading from '@/components/shared/Heading';
-import { AllPostsQueryResult } from "../../../../../sanity.types";
+import { AllPostsQueryResult } from "../../../sanity.types";
 import AnimatedUnderline from '@/components/shared/AnimatedUnderline';
 
 interface PostCardProps {

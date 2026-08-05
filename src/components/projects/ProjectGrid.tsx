@@ -1,5 +1,5 @@
-import ProjectCard from './project-card';
-import { AllProjectsQueryResult } from '../../../../../sanity.types';
+import ProjectCard from './ProjectCard';
+import { AllProjectsQueryResult } from '../../../sanity.types';
 
 interface ProjectGridProps {
   projects: AllProjectsQueryResult;

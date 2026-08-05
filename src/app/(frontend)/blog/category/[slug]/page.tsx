@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { CircleSlash } from 'lucide-react';
 import { sanityFetch } from '@/sanity/lib/live';
-import PostGrid from '../../_components/post-grid';
+import PostGrid from '@/components/blog/PostGrid';
 import { postCategoryBySlugQuery, postSlugsQuery, postsByCategoryQuery } from '@/sanity/lib/queries/documents/post';
 
 interface PageProps {

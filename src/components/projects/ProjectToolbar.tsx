@@ -1,7 +1,7 @@
 import React from 'react';
-import { ProjectSearch } from './project-search';
-import ProjectCategories from './project-categories';
-import { ProjectsPageQueryResult } from '../../../../../sanity.types';
+import { ProjectSearch } from './ProjectSearch';
+import ProjectCategories from './ProjectCategories';
+import { ProjectsPageQueryResult } from '../../../sanity.types';
 
 type Project = NonNullable<
   NonNullable<ProjectsPageQueryResult>

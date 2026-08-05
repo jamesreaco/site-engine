@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { processMetadata } from '@/lib/utils';
 import { sanityFetch } from '@/sanity/lib/live';
-import ProjectGrid from './_components/project-grid';
+import ProjectGrid from '@/components/projects/ProjectGrid';
 import { ProjectsPageQueryResult } from '../../../../sanity.types';
 import { allProjectsQuery, projectsPageQuery } from '@/sanity/lib/queries/documents/project';
 

@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import { processMetadata } from '@/lib/utils';
-import PostGrid from './_components/post-grid';
+import PostGrid from '@/components/blog/PostGrid';
 import { sanityFetch } from '@/sanity/lib/live';
 import { BlogPageQueryResult } from "../../../../sanity.types";
 import { allPostsQuery, blogPageQuery } from '@/sanity/lib/queries/documents/post';

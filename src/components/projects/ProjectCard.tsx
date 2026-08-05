@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Heading from '@/components/shared/Heading';
-import { AllProjectsQueryResult } from '../../../../../sanity.types';
+import { AllProjectsQueryResult } from '../../../sanity.types';
 import AnimatedUnderline from '@/components/shared/AnimatedUnderline';
 
 export default function ProjectCard({ project }: {
