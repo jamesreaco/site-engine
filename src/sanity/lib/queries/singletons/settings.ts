@@ -23,6 +23,24 @@ export const generalSettingsQuery = defineQuery(`*[_type == 'generalSettings'][0
   },
 }`); 
 
+export const announcementBarSettingsQuery = defineQuery(`*[_type == 'announcementBarSettings'][0] {
+  showAnnouncementBar,
+  text,
+  showLink,
+  linkType,
+  pageReference->{
+    _id,
+    _type,
+    title,
+    "slug": slug.current
+  },
+  externalUrl,
+  backgroundColour {
+    value
+  },
+  textColour,
+}`);
+
 export const marketingSettingsQuery = defineQuery(`*[_type == 'marketingSettings'][0] {
   googleAnalyticsId,
   googleTagManagerId,

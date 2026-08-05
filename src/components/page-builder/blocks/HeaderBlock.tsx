@@ -18,7 +18,7 @@ export default function HeaderBlock(props: HeaderBlockProps) {
       })}
     >
       <Container className='border-x border-dashed'>
-        <div className='pt-36 md:pt-52 pb-20 md:pb-36'>
+        <div className='pt-[calc(9rem+var(--announcement-bar-height,0px))] md:pt-[calc(13rem+var(--announcement-bar-height,0px))] pb-20 md:pb-36'>
           <Heading tag="h1" size="xxl" className='text-balance leading-normal'>
             {heading}
           </Heading>

@@ -10,7 +10,7 @@ import InstallDemoButton from "@/components/shared/InstallDemoButton";
 import { DisableDraftMode } from "@/components/shared/DisableDraftMode";
 import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
 import { navigationSettingsQuery } from "@/sanity/lib/queries/singletons/navigation";
-import { generalSettingsQuery, marketingSettingsQuery } from "@/sanity/lib/queries/singletons/settings";
+import { announcementBarSettingsQuery, generalSettingsQuery, marketingSettingsQuery } from "@/sanity/lib/queries/singletons/settings";
 
 export const metadata: Metadata = {
   title: {
@@ -27,13 +27,15 @@ export default async function RootLayout({ children }: Readonly<{
   const { isEnabled: isDraftMode } = await draftMode();
 
   const [
-    { data: settings }, 
-    { data: marketingSettings }, 
-    { data: navigationSettings }
+    { data: settings },
+    { data: marketingSettings },
+    { data: navigationSettings },
+    { data: announcementBarSettings }
   ] = await Promise.all([
     sanityFetch({ query: generalSettingsQuery }),
     sanityFetch({ query: marketingSettingsQuery }),
-    sanityFetch({ query: navigationSettingsQuery })
+    sanityFetch({ query: navigationSettingsQuery }),
+    sanityFetch({ query: announcementBarSettingsQuery })
   ]);
 
   if (!settings) return (
@@ -46,9 +48,10 @@ export default async function RootLayout({ children }: Readonly<{
   
   return (
     <body>
-      <WebsiteLayout 
+      <WebsiteLayout
         settings={settings}
         navigationSettings={navigationSettings}
+        announcementBarSettings={announcementBarSettings}
       >
         {children}
       </WebsiteLayout>

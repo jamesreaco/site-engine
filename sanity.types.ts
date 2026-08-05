@@ -902,6 +902,28 @@ export type NavigationSettings = {
   }>;
 };
 
+export type AnnouncementBarSettings = {
+  _id: string;
+  _type: "announcementBarSettings";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  showAnnouncementBar?: boolean;
+  text?: string;
+  showLink?: boolean;
+  linkType?: "internal" | "external";
+  pageReference?:
+    | PageReference
+    | BlogPageReference
+    | ServicesPageReference
+    | ProjectsPageReference
+    | ServiceReference
+    | ProjectReference;
+  externalUrl?: string;
+  backgroundColour?: SimplerColor;
+  textColour?: "light" | "dark";
+};
+
 export type GeneralSettings = {
   _id: string;
   _type: "generalSettings";
@@ -1223,6 +1245,7 @@ export type AllSanitySchemaTypes =
   | BlogSettings
   | MarketingSettings
   | NavigationSettings
+  | AnnouncementBarSettings
   | GeneralSettings
   | Page
   | BlogPage
@@ -12052,6 +12075,59 @@ export type GeneralSettingsQueryResult = {
 } | null;
 
 // Source: src/sanity/lib/queries/singletons/settings.ts
+// Variable: announcementBarSettingsQuery
+// Query: *[_type == 'announcementBarSettings'][0] {  showAnnouncementBar,  text,  showLink,  linkType,  pageReference->{    _id,    _type,    title,    "slug": slug.current  },  externalUrl,  backgroundColour {    value  },  textColour,}
+export type AnnouncementBarSettingsQueryResult = {
+  showAnnouncementBar: boolean | null;
+  text: string | null;
+  showLink: boolean | null;
+  linkType: "external" | "internal" | null;
+  pageReference:
+    | {
+        _id: string;
+        _type: "blogPage";
+        title: string | null;
+        slug: string | null;
+      }
+    | {
+        _id: string;
+        _type: "page";
+        title: string | null;
+        slug: string | null;
+      }
+    | {
+        _id: string;
+        _type: "project";
+        title: string | null;
+        slug: string | null;
+      }
+    | {
+        _id: string;
+        _type: "projectsPage";
+        title: string | null;
+        slug: string | null;
+      }
+    | {
+        _id: string;
+        _type: "service";
+        title: string | null;
+        slug: string | null;
+      }
+    | {
+        _id: string;
+        _type: "servicesPage";
+        title: string | null;
+        slug: string | null;
+      }
+    | null;
+  externalUrl: string | null;
+  backgroundColour: {
+    value: string | null;
+  } | null;
+  textColour: "dark" | "light" | null;
+} | null;
+
+// Source: src/sanity/lib/queries/singletons/settings.ts
 // Variable: marketingSettingsQuery
 // Query: *[_type == 'marketingSettings'][0] {  googleAnalyticsId,  googleTagManagerId,}
 export type MarketingSettingsQueryResult = {
@@ -12099,6 +12175,7 @@ declare module "@sanity/client" {
     "\n  *[_id == $id][0]{\n    title,\n  }    \n": OgImageQueryResult;
     "*[_type == 'generalSettings'][0].twitterHandle": TwitterHandleQueryResult;
     '*[_type == \'generalSettings\'][0] {\n  siteTitle,\n  twitterHandle,\n  siteLogo { \n    asset->{ url },\n  },\n  copyright,\n  homePage->{\n    _id,\n    _type,\n    title,\n    \'slug\': slug.current,\n    "seo": {\n      "title": coalesce(seo.title, title, ""),\n      "description": coalesce(seo.description,  ""),\n      "noIndex": seo.noIndex == true,\n      "image": seo.image,\n    },\n  },\n}': GeneralSettingsQueryResult;
+    "*[_type == 'announcementBarSettings'][0] {\n  showAnnouncementBar,\n  text,\n  showLink,\n  linkType,\n  pageReference->{\n    _id,\n    _type,\n    title,\n    \"slug\": slug.current\n  },\n  externalUrl,\n  backgroundColour {\n    value\n  },\n  textColour,\n}": AnnouncementBarSettingsQueryResult;
     "*[_type == 'marketingSettings'][0] {\n  googleAnalyticsId,\n  googleTagManagerId,\n}": MarketingSettingsQueryResult;
     "*[_type == 'blogSettings'][0] {\n  showRelatedPosts,\n  showTableOfContents,\n  showPostsByCategory\n}": BlogSettingsQueryResult;
   }

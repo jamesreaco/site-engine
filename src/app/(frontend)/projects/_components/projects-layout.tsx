@@ -20,7 +20,7 @@ export default function ProjectsLayout({ children, page }: Readonly<{
   if (pathname === '/projects' || pathname.includes('/projects/category/')) return (
     <main className='overflow-hidden md:overflow-auto'>
       <div className='px-4 xl:px-10 pattern-bg'>
-        <Container className='px-4 pt-32 md:pt-40 pb-14 md:pb-28 border-x border-dashed'>
+        <Container className='px-4 pt-[calc(8rem+var(--announcement-bar-height,0px))] md:pt-[calc(10rem+var(--announcement-bar-height,0px))] pb-14 md:pb-28 border-x border-dashed'>
           <Heading tag="h1" size="xxxl">
             {title}
           </Heading>

@@ -5746,6 +5746,146 @@
     }
   },
   {
+    "name": "announcementBarSettings",
+    "type": "document",
+    "attributes": {
+      "_id": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "_type": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string",
+          "value": "announcementBarSettings"
+        }
+      },
+      "_createdAt": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "_updatedAt": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "_rev": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "showAnnouncementBar": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "boolean"
+        },
+        "optional": true
+      },
+      "text": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "showLink": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "boolean"
+        },
+        "optional": true
+      },
+      "linkType": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "union",
+          "of": [
+            {
+              "type": "string",
+              "value": "internal"
+            },
+            {
+              "type": "string",
+              "value": "external"
+            }
+          ]
+        },
+        "optional": true
+      },
+      "pageReference": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "union",
+          "of": [
+            {
+              "type": "inline",
+              "name": "page.reference"
+            },
+            {
+              "type": "inline",
+              "name": "blogPage.reference"
+            },
+            {
+              "type": "inline",
+              "name": "servicesPage.reference"
+            },
+            {
+              "type": "inline",
+              "name": "projectsPage.reference"
+            },
+            {
+              "type": "inline",
+              "name": "service.reference"
+            },
+            {
+              "type": "inline",
+              "name": "project.reference"
+            }
+          ]
+        },
+        "optional": true
+      },
+      "externalUrl": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "backgroundColour": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "inline",
+          "name": "simplerColor"
+        },
+        "optional": true
+      },
+      "textColour": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "union",
+          "of": [
+            {
+              "type": "string",
+              "value": "light"
+            },
+            {
+              "type": "string",
+              "value": "dark"
+            }
+          ]
+        },
+        "optional": true
+      }
+    }
+  },
+  {
     "name": "generalSettings",
     "type": "document",
     "attributes": {

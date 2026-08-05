@@ -9,10 +9,12 @@ import SiteLogo from '../shared/SiteLogo';
 import SlideOutMenu from './SlideOutMenu';
 import { usePathname } from 'next/navigation';
 import { cn, resolveHref } from '@/lib/utils';
+import AnnouncementBar from './AnnouncementBar';
 import { ChevronRight, Menu } from 'lucide-react';
 import AnimatedText from '../shared/AnimatedText';
 
 import { 
+  AnnouncementBarSettingsQueryResult,
   GeneralSettingsQueryResult, 
   NavigationSettingsQueryResult 
 } from '../../../sanity.types';
@@ -28,9 +30,10 @@ import {
 interface NavbarProps {
   settings: GeneralSettingsQueryResult;
   navigationSettings: NavigationSettingsQueryResult;
+  announcementBarSettings: AnnouncementBarSettingsQueryResult;
 };
 
-export default function Navbar({ settings, navigationSettings }: NavbarProps) {
+export default function Navbar({ settings, navigationSettings, announcementBarSettings }: NavbarProps) {
 
   const pathname = usePathname();
   const hasScrolled = useScroll();
@@ -39,86 +42,91 @@ export default function Navbar({ settings, navigationSettings }: NavbarProps) {
   const { showSlideOutMenu } = navigationSettings?.slideOutMenu ?? {};
   
   return (
-    <header 
-      className={cn('z-40 fixed top-0 left-0 w-full py-6 rounded-b-xl border-b border-b-gray-100 bg-white/80 backdrop-blur-lg transition-all duration-300 ease-in-out', {
-        'py-4 ': hasScrolled
-      })}
-    >
-      <Container className='flex items-center justify-between'>
-        <SiteLogo settings={settings} />
-        <div className='flex items-center gap-3'>
-          <NavigationMenu className='hidden md:block'>
-            <NavigationMenuList className='space-x-8 group/nav'>
-              {navbarMenuItems?.map((item) => (
-                <React.Fragment key={item._key}>
-                  {!item.isButton ? (
-                    <>
-                      {item.menuItemType === 'group' ? (
-                        <NavigationMenuItem>
-                          <NavigationMenuTrigger className='group-hover/nav:opacity-40 hover:!opacity-100'>
-                            {item.title}
-                          </NavigationMenuTrigger>
-                          <NavigationMenuContent className='min-w-[180px] text-nowrap py-3 px-3 flex flex-col gap-2 bg-white'>
-                            {item.pageReferences?.map((page) => (
-                              <Link 
-                                key={page.slug} 
-                                href={resolveHref(page._type, page.slug ?? '') ?? '/'}
-                                className='group py-1 pl-3 pr-2 flex items-center justify-between gap-6 rounded-md border border-dashed hover:bg-gray-50'
-                              >
-                                {page.title}
-                                <ChevronRight 
-                                  size={14} 
-                                  className='text-gray-300 group-hover:-translate-x-0.5 group-hover:text-gray-500 transition-all duration-300' 
-                                />
-                              </Link>
-                            ))}
-                          </NavigationMenuContent>
-                        </NavigationMenuItem>
-                      ): (
-                        <NavigationMenuItem>
-                          <Link 
-                            href={resolveHref(item?.pageReference?._type ?? '', item?.pageReference?.slug ?? '') ?? '/'}
-                            className={cn('relative overflow-hidden inline-flex transition-opacity duration-200 group-hover/nav:opacity-40 hover:!opacity-100', {
-                              'hover:underline underline-offset-[38px]': !item.isButton,
-                              'py-2 px-4 rounded-full text-white bg-blue-600': item.isButton,
-                              'text-blue-700': pathname.includes(`/${item.pageReference?.slug ?? ''}`)
-                            })}
-                          >
-                            <AnimatedText>
+    <header className='z-40 fixed left-0 w-full'>
+      <AnnouncementBar
+        announcementBarSettings={announcementBarSettings}
+      />
+      <div
+        className={cn('py-6 rounded-b-xl border-b border-b-gray-100 bg-white/80 backdrop-blur-lg transition-[padding,top] duration-300 ease-in-out', {
+          'py-4 ': hasScrolled,
+        })}
+      >
+        <Container className='flex items-center justify-between'>
+          <SiteLogo settings={settings} />
+          <div className='flex items-center gap-3'>
+            <NavigationMenu className='hidden md:block'>
+              <NavigationMenuList className='space-x-8 group/nav'>
+                {navbarMenuItems?.map((item) => (
+                  <React.Fragment key={item._key}>
+                    {!item.isButton ? (
+                      <>
+                        {item.menuItemType === 'group' ? (
+                          <NavigationMenuItem>
+                            <NavigationMenuTrigger className='group-hover/nav:opacity-40 hover:!opacity-100'>
                               {item.title}
-                            </AnimatedText>
-                          </Link>
-                        </NavigationMenuItem>
-                      )}
-                    </>
-                  ): (
-                    <NavigationMenuItem>
-                      <Button 
-                        variant="primary" 
-                        disableIcon={true}
-                        buttonType="internal"
-                        pageReference={item.pageReference}
-                      >
-                        {item.title}
-                      </Button>
-                    </NavigationMenuItem>
-                  )}
-                </React.Fragment>
-              ))}
-            </NavigationMenuList>
-          </NavigationMenu>
-          {showSlideOutMenu && (
-            <SlideOutMenu 
-              settings={settings} 
-              navigationSettings={navigationSettings}
-            >
-              <button aria-label='Open menu' className='p-2.5 border border-gray-200/60 rounded-full cursor-pointer hover:bg-gray-50 transition-colors duration-300 ease-in-out'>
-                <Menu size={18} />
-              </button>
-            </SlideOutMenu>
-          )}
-        </div>
-      </Container>
+                            </NavigationMenuTrigger>
+                            <NavigationMenuContent className='min-w-[180px] text-nowrap py-3 px-3 flex flex-col gap-2 bg-white'>
+                              {item.pageReferences?.map((page) => (
+                                <Link 
+                                  key={page.slug} 
+                                  href={resolveHref(page._type, page.slug ?? '') ?? '/'}
+                                  className='group py-1 pl-3 pr-2 flex items-center justify-between gap-6 rounded-md border border-dashed hover:bg-gray-50'
+                                >
+                                  {page.title}
+                                  <ChevronRight 
+                                    size={14} 
+                                    className='text-gray-300 group-hover:-translate-x-0.5 group-hover:text-gray-500 transition-all duration-300' 
+                                  />
+                                </Link>
+                              ))}
+                            </NavigationMenuContent>
+                          </NavigationMenuItem>
+                        ): (
+                          <NavigationMenuItem>
+                            <Link 
+                              href={resolveHref(item?.pageReference?._type ?? '', item?.pageReference?.slug ?? '') ?? '/'}
+                              className={cn('relative overflow-hidden inline-flex transition-opacity duration-200 group-hover/nav:opacity-40 hover:!opacity-100', {
+                                'hover:underline underline-offset-[38px]': !item.isButton,
+                                'py-2 px-4 rounded-full text-white bg-blue-600': item.isButton,
+                                'text-blue-700': pathname.includes(`/${item.pageReference?.slug ?? ''}`)
+                              })}
+                            >
+                              <AnimatedText>
+                                {item.title}
+                              </AnimatedText>
+                            </Link>
+                          </NavigationMenuItem>
+                        )}
+                      </>
+                    ): (
+                      <NavigationMenuItem>
+                        <Button 
+                          variant="primary" 
+                          disableIcon={true}
+                          buttonType="internal"
+                          pageReference={item.pageReference}
+                        >
+                          {item.title}
+                        </Button>
+                      </NavigationMenuItem>
+                    )}
+                  </React.Fragment>
+                ))}
+              </NavigationMenuList>
+            </NavigationMenu>
+            {showSlideOutMenu && (
+              <SlideOutMenu 
+                settings={settings} 
+                navigationSettings={navigationSettings}
+              >
+                <button aria-label='Open menu' className='p-2.5 border border-gray-200/60 rounded-full cursor-pointer hover:bg-gray-50 transition-colors duration-300 ease-in-out'>
+                  <Menu size={18} />
+                </button>
+              </SlideOutMenu>
+            )}
+          </div>
+        </Container>
+      </div>
     </header>
   )
 };

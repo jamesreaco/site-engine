@@ -36,8 +36,8 @@ export default function HeroBlock(props: HeroBlockProps) {
           'pb-7 md:pb-12': mediaType === 'image'
         })}
       >
-        <div 
-          className={cn('pt-36 md:pt-52 pb-16 md:pb-24 xl:pb-36 grid grid-cols-12 gap-3 md:gap-6 xl:gap-14 md:px-14 md:border-x md:border-dashed', {
+        <div
+          className={cn('pt-[calc(9rem+var(--announcement-bar-height,0px))] md:pt-[calc(13rem+var(--announcement-bar-height,0px))] pb-16 md:pb-24 xl:pb-36 grid grid-cols-12 gap-3 md:gap-6 xl:gap-14 md:px-14 md:border-x md:border-dashed', {
             'pb-6': mediaType === 'image'
           })}
         >

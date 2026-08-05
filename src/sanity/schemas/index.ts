@@ -1,6 +1,7 @@
 import { SchemaTypeDefinition } from "sanity";
 
 import generalSettings from "./singletons/general-settings";
+import announcementBarSettings from "./singletons/announcement-bar-settings";
 import navigationSettings from "./singletons/navigation-settings";
 import blogSettings from "./singletons/blog-settings";
 import marketingSettings from "./singletons/marketing-settings";
@@ -20,6 +21,7 @@ import projectsPage from "./singletons/pages/projects-page";
 
 const coreSchema = [
   generalSettings,
+  announcementBarSettings,
   navigationSettings,
   marketingSettings,
   blogSettings,

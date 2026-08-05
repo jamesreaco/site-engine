@@ -19,5 +19,12 @@ export default defineType({
       type: "string",
       title: "Google Tag Manager ID",
     }),
-  ]
+  ],
+  preview: {
+    prepare() {
+      return {
+        title: 'Marketing Settings',
+      }
+    },
+  },
 })

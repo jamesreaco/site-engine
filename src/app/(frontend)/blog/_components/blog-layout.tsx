@@ -20,7 +20,7 @@ export default function BlogLayout({ children, page }: Readonly<{
   if (pathname === '/blog' || pathname.includes('/blog/category/')) return (
     <main className='overflow-hidden md:overflow-auto'>
       <div className='px-4 xl:px-10 pattern-bg'>
-        <Container className='px-4 pt-32 md:pt-40 pb-14 md:pb-28 border-x border-dashed'>
+        <Container className='px-4 pt-[calc(8rem+var(--announcement-bar-height,0px))] md:pt-[calc(10rem+var(--announcement-bar-height,0px))] pb-14 md:pb-28 border-x border-dashed'>
           <Heading tag="h1" size="xxxl" className='w-fit'>
             {title}
           </Heading>
@@ -39,7 +39,7 @@ export default function BlogLayout({ children, page }: Readonly<{
   )
 
   return (
-    <main className='pt-32 md:pt-40 pb-10 xl:pb-16 pattern-bg'>
+    <main className='pt-[calc(8rem+var(--announcement-bar-height,0px))] md:pt-[calc(10rem+var(--announcement-bar-height,0px))] pb-10 xl:pb-16 pattern-bg'>
       <Container>
         {children}
       </Container>

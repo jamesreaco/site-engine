@@ -26,5 +26,12 @@ export default defineType({
       description: 'Enable to display post categories in right sidebar of each post.',
       initialValue: true
     }),
-  ]
+  ],
+  preview: {
+    prepare() {
+      return {
+        title: 'Blog Settings',
+      }
+    },
+  },
 })

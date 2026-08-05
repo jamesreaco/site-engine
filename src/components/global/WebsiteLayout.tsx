@@ -2,7 +2,12 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import { Toaster } from 'react-hot-toast';
 import { Geist, Geist_Mono } from 'next/font/google'
-import { GeneralSettingsQueryResult, NavigationSettingsQueryResult } from '../../../sanity.types';
+
+import {
+  AnnouncementBarSettingsQueryResult,
+  GeneralSettingsQueryResult,
+  NavigationSettingsQueryResult
+} from '../../../sanity.types';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -18,18 +23,21 @@ interface WebsiteLayoutProps {
   children: React.ReactNode;
   settings: GeneralSettingsQueryResult;
   navigationSettings: NavigationSettingsQueryResult;
+  announcementBarSettings: AnnouncementBarSettingsQueryResult;
 };
 
-export default function WebsiteLayout({ 
+export default function WebsiteLayout({
   children,
   settings,
   navigationSettings,
+  announcementBarSettings,
 }: WebsiteLayoutProps) {
   return (
-    <div className={`${geistSans.variable} ${geistMono.variable} font-geistSans antialiased grid min-h-[100dvh] grid-rows-[auto_1fr_auto]`}>
-      <Navbar 
+    <div className={`${geistSans.variable} ${geistMono.variable} font-geistSans antialiased grid min-h-[calc(100dvh-var(--announcement-bar-height,0px))] grid-rows-[auto_1fr_auto]`}>
+      <Navbar
         settings={settings}
         navigationSettings={navigationSettings}
+        announcementBarSettings={announcementBarSettings}
       />
       <main className='overflow-hidden'>
         {children}

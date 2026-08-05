@@ -9,6 +9,7 @@ export const SettingsItem = (S: StructureBuilder) =>
       S.list()
         .title('Settings')
         .items([
+          S.divider(),
           S.listItem()
             .title('General')
             .child(
@@ -17,6 +18,16 @@ export const SettingsItem = (S: StructureBuilder) =>
               .schemaType('generalSettings')
               .documentId('generalSettings')
               .title('General')
+            ),
+          S.divider(),
+          S.listItem()
+            .title('Announcement Bar')
+            .child(
+              S.document()
+                .id('announcementBarSettings')
+                .schemaType('announcementBarSettings')
+                .documentId('announcementBarSettings')
+                .title('Announcement Bar')
             ),
           S.listItem()
             .title('Navigation')
@@ -54,5 +65,6 @@ export const SettingsItem = (S: StructureBuilder) =>
                 .documentId('blogSettings')
                 .title('Blog & Posts')
             ),
+          S.divider(),
         ])
     )
