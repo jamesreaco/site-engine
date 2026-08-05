@@ -26,7 +26,7 @@ export default async function Home() {
     query: generalSettingsQuery,
   });
 
-  if (settings?.homePage === null) return (
+  if (!settings?.homePage) return (
     <Container className="py-16">
       No Homepage Set...
     </Container>
