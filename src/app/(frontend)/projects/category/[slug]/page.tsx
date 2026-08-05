@@ -24,9 +24,11 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
 
+  const { slug } = await params;
+
   const { data: category } = await sanityFetch({
     query: projectCategoryBySlugQuery,
-    params: await params,
+    params: { slug },
     stega: false,
   });
 
@@ -34,7 +36,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   return {
     title: `${category?.title} Projects`,
-    description: `Browse our collection of ${category?.title?.toLowerCase()} projects.`
+    description: `Browse our collection of ${category?.title?.toLowerCase()} projects.`,
+    alternates: {
+      canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/projects/category/${slug}`,
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
   }
 };
 
