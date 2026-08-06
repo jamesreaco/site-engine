@@ -1,12 +1,14 @@
 import { Metadata } from 'next';
 import { CircleSlash } from 'lucide-react';
 import { sanityFetch } from '@/sanity/lib/live';
+import { JsonLd } from '@/components/shared/JsonLd';
 import ProjectGrid from '@/components/projects/ProjectGrid';
+import { itemListSchema, webPageSchema } from '@/lib/json-ld';
 
-import { 
-  projectCategoryBySlugQuery, 
-  projectSlugsQuery, 
-  projectsByCategoryQuery 
+import {
+  projectCategoryBySlugQuery,
+  projectSlugsQuery,
+  projectsByCategoryQuery
 } from '@/sanity/lib/queries/documents/project';
 
 interface PageProps {
@@ -53,20 +55,58 @@ export default async function ProjectsByCategoryPage(props: {
 
   const params = await props.params;
 
+  const { data: category } = await sanityFetch({
+    query: projectCategoryBySlugQuery,
+    params,
+  });
+
   const { data: projects } = await sanityFetch({
     query: projectsByCategoryQuery,
     params: params
   });
 
+  const path = `/projects/category/${params.slug}`;
+
+  const jsonLd = (
+    <>
+      <JsonLd data={webPageSchema({
+        schemaType: 'CollectionPage',
+        title: category?.title ? `${category.title} Projects` : undefined,
+        seo: category?.title
+          ? { description: `Browse our collection of ${category.title.toLowerCase()} projects.` }
+          : null,
+        path,
+      })} />
+      {projects.length > 0 && (
+        <JsonLd data={itemListSchema({ 
+          items: projects, 
+          path 
+        })} />
+      )}
+    </>
+  );
+
   if (projects.length === 0) {
     return (
-      <div className="py-20 flex items-center justify-center gap-2 border border-dashed rounded-3xl text-center text-gray-600 bg-white">
-        <CircleSlash size={20} className='text-red-500' /> <span className='font-medium antialiased'>No projects found in this category.</span>
-      </div>
+      <>
+        {jsonLd}
+        <div className="py-20 flex items-center justify-center gap-2 border border-dashed rounded-3xl text-center text-gray-600 bg-white">
+          <CircleSlash 
+            size={20} 
+            className='text-red-500' 
+          /> 
+          <span className='font-medium antialiased'>
+            No projects found in this category.
+          </span>
+        </div>
+      </>
     )
   };
 
   return (
-    <ProjectGrid projects={projects} />
+    <>
+      {jsonLd}
+      <ProjectGrid projects={projects} />
+    </>
   )
 };

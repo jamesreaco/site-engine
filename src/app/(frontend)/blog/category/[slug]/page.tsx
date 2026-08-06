@@ -2,6 +2,8 @@ import { Metadata } from 'next';
 import { CircleSlash } from 'lucide-react';
 import { sanityFetch } from '@/sanity/lib/live';
 import PostGrid from '@/components/blog/PostGrid';
+import { JsonLd } from '@/components/shared/JsonLd';
+import { itemListSchema, webPageSchema } from '@/lib/json-ld';
 import { postCategoryBySlugQuery, postSlugsQuery, postsByCategoryQuery } from '@/sanity/lib/queries/documents/post';
 
 interface PageProps {
@@ -48,20 +50,57 @@ export default async function PostsByCategoryPage(props: {
 
   const params = await props.params;
 
-  const { data: posts } = await sanityFetch({ 
-    query: postsByCategoryQuery, 
+  const { data: category } = await sanityFetch({
+    query: postCategoryBySlugQuery,
+    params,
+  });
+
+  const { data: posts } = await sanityFetch({
+    query: postsByCategoryQuery,
     params: params
   });
 
+  const path = `/blog/category/${params.slug}`;
+
+  const jsonLd = (
+    <>
+      <JsonLd data={webPageSchema({
+        schemaType: 'CollectionPage',
+        title: category?.title ? `${category.title} Posts` : undefined,
+        seo: category?.title
+          ? { description: `Browse our collection of ${category.title.toLowerCase()} posts.` }
+          : null,
+        path,
+      })} />
+      {posts.length > 0 && (
+        <JsonLd data={itemListSchema({ 
+          items: posts, 
+          path 
+        })} />
+      )}
+    </>
+  );
+
   if (posts.length === 0) {
     return (
-      <div className="py-20 flex items-center justify-center gap-2 border border-dashed rounded-3xl text-center text-gray-600 bg-white">
-        <CircleSlash size={20} className='text-red-500' /> <span className='font-medium antialiased'>No posts found in this category.</span>
-      </div>
+      <>
+        {jsonLd}
+        <div className="py-20 flex items-center justify-center gap-2 border border-dashed rounded-3xl text-center text-gray-600 bg-white">
+          <CircleSlash  
+            size={20} 
+            className='text-red-500' /> 
+            <span className='font-medium antialiased'>
+              No posts found in this category.
+            </span>
+        </div>
+      </>
     )
   };
 
   return (
-    <PostGrid posts={posts} />
+    <>
+      {jsonLd}
+      <PostGrid posts={posts} />
+    </>
   )
 };

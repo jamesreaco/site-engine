@@ -1,8 +1,6 @@
-"use client"
-
+import Link from 'next/link';
 import Image from 'next/image';
-import { cn, scrollToElement } from '@/lib/utils';
-import { usePathname, useRouter } from 'next/navigation';
+import { cn } from '@/lib/utils';
 import { GeneralSettingsQueryResult } from '../../../sanity.types';
 
 export default function SiteLogo({ settings, location, theme }: {
@@ -11,15 +9,11 @@ export default function SiteLogo({ settings, location, theme }: {
   theme?: 'light' | 'dark';
 }) {
 
-  const pathname = usePathname();
-  const router = useRouter();
-
   const { siteTitle, siteLogo } = settings ?? {};
 
   return (
-    <button 
-      aria-label="Go to home page"
-      onClick={() => pathname === '/' ? scrollToElement('home') : router.push(`/#home`)}
+    <Link 
+      href="/"
       className={cn('hover:scale-[0.95] transition-transform duration-300 ease-in-out', {
         'text-white': theme === 'light'
       })}
@@ -44,6 +38,6 @@ export default function SiteLogo({ settings, location, theme }: {
           className='w-[140px] h-auto object-contain'
         />
       )}
-    </button>
+    </Link>
   )
 };

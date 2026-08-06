@@ -1,10 +1,11 @@
-import React from 'react';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { processMetadata } from '@/lib/utils';
 import { sanityFetch } from '@/sanity/lib/live';
+import { JsonLd } from '@/components/shared/JsonLd';
 import PostContent from '@/components/blog/PostContent';
 import RelatedPosts from '@/components/blog/RelatedPosts';
+import { articleSchema, webPageSchema } from '@/lib/json-ld';
 import { postBySlugQuery, postSlugsQuery } from '@/sanity/lib/queries/documents/post';
 import { AllPostsQueryResult, PostBySlugQueryResult } from '../../../../../sanity.types';
 
@@ -47,6 +48,13 @@ export default async function PostPage({ params }: PageProps) {
 
   return (
     <>
+      <JsonLd data={webPageSchema({ 
+        title: post.title, 
+        seo: post.seo, 
+        documentType: post._type, 
+        slug: post.slug 
+      })} />
+      <JsonLd data={articleSchema(post)} />
       <PostContent post={post} />
       {showRelatedPosts && (
         <RelatedPosts posts={post.relatedPosts as AllPostsQueryResult} />

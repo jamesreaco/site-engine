@@ -1,6 +1,8 @@
 import { Metadata } from "next";
 import { processMetadata } from "@/lib/utils";
+import { webPageSchema } from "@/lib/json-ld";
 import { sanityFetch } from "@/sanity/lib/live";
+import { JsonLd } from "@/components/shared/JsonLd";
 import Container from "@/components/global/Container";
 import { PageBuilder } from "@/components/page-builder";
 import { PageBySlugQueryResult } from "../../../sanity.types";
@@ -39,10 +41,15 @@ export default async function Home() {
 
   return(
     <div id="home">
-      <PageBuilder 
-        id={page?._id ?? ""} 
-        type={page?._type ?? ""} 
-        pageBuilder={page?.pageBuilder ?? []} 
+      <JsonLd data={webPageSchema({ 
+        title: page?.title, 
+        seo: page?.seo, 
+        path: '/' 
+      })} />
+      <PageBuilder
+        id={page?._id ?? ""}
+        type={page?._type ?? ""}
+        pageBuilder={page?.pageBuilder ?? []}
       />
     </div>
   )

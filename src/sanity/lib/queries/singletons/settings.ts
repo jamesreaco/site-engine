@@ -5,10 +5,16 @@ export const twitterHandleQuery = defineQuery(`*[_type == 'generalSettings'][0].
 export const generalSettingsQuery = defineQuery(`*[_type == 'generalSettings'][0] {
   siteTitle,
   twitterHandle,
-  siteLogo { 
+  siteLogo {
     asset->{ url },
   },
   copyright,
+  companyEmailAddress,
+  companyPhoneNumber,
+  companySocialMediaLinks[] {
+    title,
+    profileUrl,
+  },
   homePage->{
     _id,
     _type,

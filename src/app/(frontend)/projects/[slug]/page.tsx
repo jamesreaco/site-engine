@@ -1,9 +1,10 @@
-import React from 'react';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { processMetadata } from '@/lib/utils';
 import { sanityFetch } from '@/sanity/lib/live';
+import { JsonLd } from '@/components/shared/JsonLd';
 import { PageBuilder } from '@/components/page-builder';
+import { creativeWorkSchema, webPageSchema } from '@/lib/json-ld';
 import { ProjectBySlugQueryResult } from '../../../../../sanity.types';
 import { projectBySlugQuery, projectSlugsQuery } from '@/sanity/lib/queries/documents/project';
 
@@ -39,12 +40,21 @@ export default async function ProjectPage({ params }: PageProps) {
   });
 
   if (project === null) notFound();
-  
+
   return (
-    <PageBuilder
-      id={project?._id ?? ''}
-      type={project?._type ?? ''}
-      pageBuilder={project?.pageBuilder ?? []}
-    />
+    <>
+      <JsonLd data={webPageSchema({ 
+        title: project.title, 
+        seo: project.seo, 
+        documentType: project._type, 
+        slug: project.slug 
+      })} />
+      <JsonLd data={creativeWorkSchema(project)} />
+      <PageBuilder
+        id={project?._id ?? ''}
+        type={project?._type ?? ''}
+        pageBuilder={project?.pageBuilder ?? []}
+      />
+    </>
   )
 };

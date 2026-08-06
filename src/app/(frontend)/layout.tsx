@@ -2,10 +2,12 @@ import "./globals.css";
 
 import type { Metadata } from "next";
 import { draftMode } from "next/headers";
+import { JsonLd } from "@/components/shared/JsonLd";
 import Container from "@/components/global/Container";
+import { VisualEditing } from "next-sanity/visual-editing";
 import { sanityFetch, SanityLive } from "@/sanity/lib/live";
 import WebsiteLayout from "@/components/global/WebsiteLayout";
-import { VisualEditing } from "next-sanity/visual-editing";
+import { organizationSchema, websiteSchema } from "@/lib/json-ld";
 import InstallDemoButton from "@/components/shared/InstallDemoButton";
 import { DisableDraftMode } from "@/components/shared/DisableDraftMode";
 import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
@@ -48,6 +50,8 @@ export default async function RootLayout({ children }: Readonly<{
   
   return (
     <body>
+      <JsonLd data={organizationSchema(settings)} />
+      <JsonLd data={websiteSchema(settings)} />
       <WebsiteLayout
         settings={settings}
         navigationSettings={navigationSettings}

@@ -2,7 +2,9 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { processMetadata } from '@/lib/utils';
 import { sanityFetch } from '@/sanity/lib/live';
+import { JsonLd } from '@/components/shared/JsonLd';
 import { PageBuilder } from '@/components/page-builder';
+import { serviceSchema, webPageSchema } from '@/lib/json-ld';
 import { serviceBySlugQuery, serviceSlugsQuery } from '@/sanity/lib/queries/documents/service';
 
 interface PageProps {
@@ -39,10 +41,19 @@ export default async function ServicePage({ params }: PageProps) {
   if (service === null) notFound();
 
   return (
-    <PageBuilder
-      id={service?._id ?? ''}
-      type={service?._type ?? ''}
-      pageBuilder={service?.pageBuilder ?? []}
-    />
+    <>
+      <JsonLd data={webPageSchema({ 
+        title: service.title, 
+        seo: service.seo, 
+        documentType: service._type, 
+        slug: service.slug 
+      })} />
+      <JsonLd data={serviceSchema(service)} />
+      <PageBuilder
+        id={service?._id ?? ''}
+        type={service?._type ?? ''}
+        pageBuilder={service?.pageBuilder ?? []}
+      />
+    </>
   )
 };

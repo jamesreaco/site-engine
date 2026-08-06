@@ -11952,7 +11952,7 @@ export type TwitterHandleQueryResult = string | null;
 
 // Source: src/sanity/lib/queries/singletons/settings.ts
 // Variable: generalSettingsQuery
-// Query: *[_type == 'generalSettings'][0] {  siteTitle,  twitterHandle,  siteLogo {     asset->{ url },  },  copyright,  homePage->{    _id,    _type,    title,    'slug': slug.current,    "seo": {      "title": coalesce(seo.title, title, ""),      "description": coalesce(seo.description,  ""),      "noIndex": seo.noIndex == true,      "image": seo.image,    },  },}
+// Query: *[_type == 'generalSettings'][0] {  siteTitle,  twitterHandle,  siteLogo {    asset->{ url },  },  copyright,  companyEmailAddress,  companyPhoneNumber,  companySocialMediaLinks[] {    title,    profileUrl,  },  homePage->{    _id,    _type,    title,    'slug': slug.current,    "seo": {      "title": coalesce(seo.title, title, ""),      "description": coalesce(seo.description,  ""),      "noIndex": seo.noIndex == true,      "image": seo.image,    },  },}
 export type GeneralSettingsQueryResult = {
   siteTitle: string | null;
   twitterHandle: string | null;
@@ -11962,6 +11962,12 @@ export type GeneralSettingsQueryResult = {
     } | null;
   } | null;
   copyright: string | null;
+  companyEmailAddress: string | null;
+  companyPhoneNumber: string | null;
+  companySocialMediaLinks: Array<{
+    title: string | null;
+    profileUrl: string | null;
+  }> | null;
   homePage:
     | {
         _id: string;
@@ -12174,7 +12180,7 @@ declare module "@sanity/client" {
     '*[_type == \'navigationSettings\'][0] {\n  "navbar": {\n    navbarMenuItems[] {\n      _key,\n      title,\n      pageReference->{\n        _id,\n        _type,\n        title,\n        "slug": slug.current\n      },\n      pageReferences[]->{\n        _id,\n        _type,\n        title,\n        "slug": slug.current\n      },\n      menuItemType,\n      isButton,\n    },\n  },\n  "slideOutMenu": {\n    showSlideOutMenu,\n    slideOutMenuItems[] {\n      _key,\n      title,\n      _type,\n      menuItemType,\n      pageReference->{\n        _id,\n        _type,\n        title,\n        "slug": slug.current\n      },\n      pageReferences[]->{\n        _id,\n        _type,\n        title,\n        "slug": slug.current\n      },\n    },\n    slideOutMenuButtons[] {\n      \n  _key,\n  showButton,\n  buttonText,\n  buttonVariant,\n  buttonType,\n  buttonWidth,\n  buttonFileUrl {\n    asset->{ url }\n  },\n  buttonPageReference->{\n    _id,\n    _type,\n    title,\n    "slug": slug.current\n  },\n  buttonEmailAddress,\n  buttonExternalUrl,\n  buttonAnchorLocation,\n  buttonAnchorId\n\n    },\n    showCompanyDetailsSlideOutMenu,\n    "slideOutMenuSettings": *[_type == \'generalSettings\'][0] {\n      companyEmailAddress,\n      companyPhoneNumber,\n      companySocialMediaLinks[] {\n        _key,\n        title,\n        profileUrl,\n        icon {\n          asset->{\n            url\n          }\n        }\n      }\n    }\n  },\n  "footer": {\n    footerColumns[] {\n      _key,\n      title,\n      menuItems[] {\n        _key,\n        title,\n        linkType,\n        pageReference->{\n          _id,\n          title,\n          "slug": slug.current\n        },\n        externalUrl\n      },\n    },\n    footerLegalMenuItems[] {\n      _key,\n      title,\n      pageReference->{\n        _id,\n        title,\n        "slug": slug.current\n      },\n    },\n  }\n}': NavigationSettingsQueryResult;
     "\n  *[_id == $id][0]{\n    title,\n  }    \n": OgImageQueryResult;
     "*[_type == 'generalSettings'][0].twitterHandle": TwitterHandleQueryResult;
-    '*[_type == \'generalSettings\'][0] {\n  siteTitle,\n  twitterHandle,\n  siteLogo { \n    asset->{ url },\n  },\n  copyright,\n  homePage->{\n    _id,\n    _type,\n    title,\n    \'slug\': slug.current,\n    "seo": {\n      "title": coalesce(seo.title, title, ""),\n      "description": coalesce(seo.description,  ""),\n      "noIndex": seo.noIndex == true,\n      "image": seo.image,\n    },\n  },\n}': GeneralSettingsQueryResult;
+    '*[_type == \'generalSettings\'][0] {\n  siteTitle,\n  twitterHandle,\n  siteLogo {\n    asset->{ url },\n  },\n  copyright,\n  companyEmailAddress,\n  companyPhoneNumber,\n  companySocialMediaLinks[] {\n    title,\n    profileUrl,\n  },\n  homePage->{\n    _id,\n    _type,\n    title,\n    \'slug\': slug.current,\n    "seo": {\n      "title": coalesce(seo.title, title, ""),\n      "description": coalesce(seo.description,  ""),\n      "noIndex": seo.noIndex == true,\n      "image": seo.image,\n    },\n  },\n}': GeneralSettingsQueryResult;
     "*[_type == 'announcementBarSettings'][0] {\n  showAnnouncementBar,\n  text,\n  showLink,\n  linkType,\n  pageReference->{\n    _id,\n    _type,\n    title,\n    \"slug\": slug.current\n  },\n  externalUrl,\n  backgroundColour {\n    value\n  },\n  textColour,\n}": AnnouncementBarSettingsQueryResult;
     "*[_type == 'marketingSettings'][0] {\n  googleAnalyticsId,\n  googleTagManagerId,\n}": MarketingSettingsQueryResult;
     "*[_type == 'blogSettings'][0] {\n  showRelatedPosts,\n  showTableOfContents,\n  showPostsByCategory\n}": BlogSettingsQueryResult;
