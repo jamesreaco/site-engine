@@ -46,7 +46,9 @@ export default async function ServicePage({ params }: PageProps) {
         title: service.title, 
         seo: service.seo, 
         documentType: service._type, 
-        slug: service.slug 
+        slug: service.slug,
+        createdAt: service._createdAt,
+        updatedAt: service._updatedAt,
       })} />
       <JsonLd data={serviceSchema(service)} />
       <PageBuilder

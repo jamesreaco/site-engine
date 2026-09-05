@@ -33,7 +33,9 @@ export default async function BlogArchivePage() {
         schemaType: 'CollectionPage', 
         title: page?.title, 
         seo: page?.seo, 
-        documentType: 'blogPage' 
+        documentType: 'blogPage',
+        createdAt: page?._createdAt,
+        updatedAt: page?._updatedAt,
       })} />
       {posts && posts.length > 0 && (
         <JsonLd data={itemListSchema({ 

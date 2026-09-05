@@ -8,6 +8,8 @@ export const postSlugsQuery = defineQuery(`*[_type == "post" && defined(slug.cur
 export const blogPageQuery = defineQuery(`*[_type == 'blogPage'][0] {
   _id,
   _type,
+  _createdAt,
+  _updatedAt,
   title,
   'slug': slug.current,
   ${pageBuilder},
@@ -55,6 +57,7 @@ export const postBySlugQuery = defineQuery(`*[_type == 'post' && slug.current ==
   _id,
   _type,
   _createdAt,
+  _updatedAt,
   title,
   'slug': slug.current,
   excerpt,
@@ -223,6 +226,8 @@ export const postsByCategoryQuery = defineQuery(`*[_type == 'post' && category->
 export const postCategoryBySlugQuery = defineQuery(`*[_type == 'postCategory' && slug.current == $slug][0] {
   _id,
   _type,
+  _createdAt,
+  _updatedAt,
   title,
   'slug': slug.current,
 }`);

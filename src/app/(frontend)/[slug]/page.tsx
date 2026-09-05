@@ -45,7 +45,10 @@ export default async function Page({ params }: PageProps) {
       <JsonLd data={webPageSchema({ 
         title: page.title, 
         seo: page.seo, 
-        documentType: page._type, slug: page.slug 
+        documentType: page._type, 
+        slug: page.slug,
+        createdAt: page._createdAt,
+        updatedAt: page._updatedAt,
       })}/>
       <PageBuilder
         id={page?._id ?? ''}

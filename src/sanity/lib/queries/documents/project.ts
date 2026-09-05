@@ -8,6 +8,8 @@ export const projectSlugsQuery = defineQuery(`*[_type == "project" && defined(sl
 export const projectsPageQuery = defineQuery(`*[_type == 'projectsPage'][0] {
   _id,
   _type,
+  _createdAt,
+  _updatedAt,
   title,
   'slug': slug.current,
   ${pageBuilder},
@@ -50,6 +52,8 @@ export const projectPathsQuery = defineQuery(`*[_type == "project" && defined(sl
 export const projectBySlugQuery = defineQuery(`*[_type == 'project' && slug.current == $slug][0] {
   _id,
   _type,
+  _createdAt,
+  _updatedAt,
   title,
   'slug': slug.current,
   category->{
@@ -115,6 +119,8 @@ export const projectsByCategoryQuery = defineQuery(`*[_type == 'project' && cate
 export const projectCategoryBySlugQuery = defineQuery(`*[_type == 'projectCategory' && slug.current == $slug][0] {
   _id,
   _type,
+  _createdAt,
+  _updatedAt,
   title,
   'slug': slug.current,
 }`);

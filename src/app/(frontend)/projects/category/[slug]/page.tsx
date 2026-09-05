@@ -76,6 +76,8 @@ export default async function ProjectsByCategoryPage(props: {
           ? { description: `Browse our collection of ${category.title.toLowerCase()} projects.` }
           : null,
         path,
+        createdAt: category?._createdAt,
+        updatedAt: category?._updatedAt,
       })} />
       {projects.length > 0 && (
         <JsonLd data={itemListSchema({ 

@@ -44,7 +44,9 @@ export default async function Home() {
       <JsonLd data={webPageSchema({ 
         title: page?.title, 
         seo: page?.seo, 
-        path: '/' 
+        path: '/',
+        createdAt: page?._createdAt,
+        updatedAt: page?._updatedAt,
       })} />
       <PageBuilder
         id={page?._id ?? ""}

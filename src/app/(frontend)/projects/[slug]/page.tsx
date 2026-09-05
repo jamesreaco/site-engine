@@ -47,7 +47,9 @@ export default async function ProjectPage({ params }: PageProps) {
         title: project.title, 
         seo: project.seo, 
         documentType: project._type, 
-        slug: project.slug 
+        slug: project.slug,
+        createdAt: project._createdAt,
+        updatedAt: project._updatedAt,
       })} />
       <JsonLd data={creativeWorkSchema(project)} />
       <PageBuilder

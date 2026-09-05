@@ -64,6 +64,8 @@ export function webPageSchema({
   documentType,
   slug,
   path,
+  createdAt,
+  updatedAt,
 }: {
   schemaType?: 'WebPage' | 'CollectionPage';
   title?: string | null;
@@ -71,6 +73,8 @@ export function webPageSchema({
   documentType?: string;
   slug?: string | null;
   path?: string;
+  createdAt?: string | null;
+  updatedAt?: string | null;
 }) {
 
   const url = absoluteUrl(path ?? resolveHref(documentType, slug ?? undefined));
@@ -84,6 +88,8 @@ export function webPageSchema({
     name: seo?.title || title || siteName,
     ...(seo?.description && { description: seo.description }),
     ...(image && { image }),
+    ...(createdAt && { datePublished: createdAt }),
+    ...((updatedAt || createdAt) && { dateModified: updatedAt || createdAt }),
     isPartOf: { '@id': `${siteUrl}/#website` },
   };
 };
@@ -106,7 +112,7 @@ export function articleSchema(post: PostBySlugQueryResult) {
     ...(image && { image }),
     url,
     datePublished: post._createdAt,
-    dateModified: post._createdAt,
+    dateModified: post._updatedAt || post._createdAt,
     ...(post.author?.name && {
       author: { '@type': 'Person', name: post.author.name },
     }),
@@ -129,6 +135,10 @@ export function serviceSchema(service: ServiceBySlugQueryResult) {
     ...(service.seo?.description && { description: service.seo.description }),
     ...(image && { image }),
     url,
+    ...(service._createdAt && { datePublished: service._createdAt }),
+    ...((service._updatedAt || service._createdAt) && {
+      dateModified: service._updatedAt || service._createdAt,
+    }),
     provider: { '@id': `${siteUrl}/#organization` },
   };
 };
@@ -148,6 +158,10 @@ export function creativeWorkSchema(project: ProjectBySlugQueryResult) {
     ...(image && { image }),
     url,
     ...(project.category?.title && { about: project.category.title }),
+    ...(project._createdAt && { datePublished: project._createdAt }),
+    ...((project._updatedAt || project._createdAt) && {
+      dateModified: project._updatedAt || project._createdAt,
+    }),
     creator: { '@id': `${siteUrl}/#organization` },
   };
 };

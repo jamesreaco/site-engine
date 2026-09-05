@@ -33,7 +33,9 @@ export default async function ProjectsPage() {
         schemaType: 'CollectionPage', 
         title: page?.title, 
         seo: page?.seo,
-        documentType: 'projectsPage' 
+        documentType: 'projectsPage',
+        createdAt: page?._createdAt,
+        updatedAt: page?._updatedAt,
       })} />
       {projects && projects.length > 0 && (
         <JsonLd data={itemListSchema({ 

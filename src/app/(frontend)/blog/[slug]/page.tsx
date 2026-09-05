@@ -52,7 +52,9 @@ export default async function PostPage({ params }: PageProps) {
         title: post.title, 
         seo: post.seo, 
         documentType: post._type, 
-        slug: post.slug 
+        slug: post.slug,
+        createdAt: post._createdAt,
+        updatedAt: post._updatedAt,
       })} />
       <JsonLd data={articleSchema(post)} />
       <PostContent post={post} />
