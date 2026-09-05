@@ -1,7 +1,7 @@
-import React from 'react';
+import PageSkeleton from '@/components/shared/PageSkeleton';
 
 export default function Loading() {
   return (
-    <div>Loading...</div>
+    <PageSkeleton />
   )
 };

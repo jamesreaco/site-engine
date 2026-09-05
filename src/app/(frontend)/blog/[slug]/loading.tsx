@@ -1,7 +1,7 @@
-import React from 'react';
+import PostContentSkeleton from '@/components/blog/PostContentSkeleton';
 
 export default function Loading() {
   return (
-    <div>Loading...</div>
+    <PostContentSkeleton />
   )
 };
