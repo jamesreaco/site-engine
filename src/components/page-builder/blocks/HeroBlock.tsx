@@ -37,26 +37,22 @@ export default function HeroBlock(props: HeroBlockProps) {
         })}
       >
         <div
-          className={cn('pt-[calc(9rem+var(--announcement-bar-height,0px))] md:pt-[calc(13rem+var(--announcement-bar-height,0px))] pb-16 md:pb-24 xl:pb-36 grid grid-cols-12 gap-3 md:gap-6 xl:gap-14 md:px-14 md:border-x md:border-dashed', {
-            'pb-6': mediaType === 'image'
+          className={cn('pt-[calc(9rem+var(--announcement-bar-height,0px))] md:pt-[calc(13rem+var(--announcement-bar-height,0px))] flex flex-col justify-center items-center pb-16 md:pb-24 xl:pb-32 md:px-14 md:border-x md:border-dashed', {
+            'pb-6 xl:pb-40': mediaType === 'image'
           })}
         >
-          <div className='col-span-12 xl:col-span-7'>
-            <Heading size="xxxl" tag="h1" className='md:max-w-[40rem] text-balance leading-tight'>
-              {heading}
-            </Heading>
-          </div>
-          <div className='col-span-12 xl:col-span-5'>
-            <PortableTextEditor 
-              data={content ?? []}
-              classNames='mt-3 md:text-lg text-gray-600 text-balance'
-            />
-            {buttons && buttons.length > 0 && (
-              <div className='mt-8 md:mt-10'>
-                <ButtonRenderer buttons={buttons} />  
-              </div>
-            )}
-          </div>
+          <Heading size="xxxl" tag="h1" className='md:max-w-[50rem] text-balance leading-tight text-center'>
+            {heading}
+          </Heading>
+          <PortableTextEditor 
+            data={content ?? []}
+            classNames='mt-6 md:mt-9 md:text-lg text-gray-600 text-balance text-center'
+          />
+          {buttons && buttons.length > 0 && (
+            <div className='mt-8 md:mt-11'>
+              <ButtonRenderer buttons={buttons} />  
+            </div>
+          )}
         </div>
         {mediaType === 'image' && image && (
           <div className='p-4 md:p-6 border border-dashed rounded-3xl md:rounded-4xl pattern-bg--2'>

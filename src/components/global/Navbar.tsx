@@ -1,6 +1,6 @@
 "use client"
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Container from './Container';
 import { Button } from '../ui/Button';
@@ -37,17 +37,42 @@ export default function Navbar({ settings, navigationSettings, announcementBarSe
 
   const pathname = usePathname();
   const hasScrolled = useScroll();
+  const headerRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+
+    const header = headerRef.current;
+    if (!header) return;
+
+    const root = document.documentElement;
+
+    const updateSize = () => {
+      root.style.setProperty('--navbar-height', `${header.offsetHeight}px`);
+      root.style.setProperty('--navbar-width', `${root.clientWidth}px`);
+    };
+
+    updateSize();
+
+    const observer = new ResizeObserver(updateSize);
+    observer.observe(header);
+    window.addEventListener('resize', updateSize);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('resize', updateSize);
+    };
+  }, []);
 
   const { navbarMenuItems } = navigationSettings?.navbar ?? {};
   const { showSlideOutMenu } = navigationSettings?.slideOutMenu ?? {};
   
   return (
-    <header className='z-40 fixed left-0 w-full'>
+    <header ref={headerRef} className='z-40 fixed left-0 w-full'>
       <AnnouncementBar
         announcementBarSettings={announcementBarSettings}
       />
       <div
-        className={cn('py-6 rounded-b-xl border-b border-b-gray-100 bg-white/80 backdrop-blur-lg transition-[padding,top] duration-300 ease-in-out', {
+        className={cn('py-6 rounded-b-xl border-b border-b-gray-100 bg-white backdrop-blur-lg transition-[padding,top,border-radius] duration-300 ease-in-out [[data-archive-toolbar-stuck]_&]:rounded-none', {
           'py-4 ': hasScrolled,
         })}
       >
@@ -119,7 +144,7 @@ export default function Navbar({ settings, navigationSettings, announcementBarSe
                 settings={settings} 
                 navigationSettings={navigationSettings}
               >
-                <button aria-label='Open menu' className='p-2.5 border border-gray-200/60 rounded-full cursor-pointer hover:bg-gray-50 transition-colors duration-300 ease-in-out'>
+                <button aria-label='Open menu' className='p-2.5 border border-gray-200/60 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors duration-300 ease-in-out'>
                   <Menu size={18} />
                 </button>
               </SlideOutMenu>

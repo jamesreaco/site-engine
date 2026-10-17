@@ -1,11 +1,11 @@
 "use client"
 
 import React from 'react';
-import BlogToolbar from './BlogToolbar';
 import { usePathname } from 'next/navigation';
-import Heading from '@/components/shared/Heading';
-import Container from '@/components/global/Container';
+import BlogPostShell from './BlogPostShell';
 import { PageBuilder } from '@/components/page-builder';
+import ArchiveShell from '@/components/shared/archive/ArchiveShell';
+import ArchiveHeader from '@/components/shared/archive/ArchiveHeader';
 import { BlogPageQueryResult } from '../../../sanity.types';
 
 export default function BlogLayout({ children, page }: Readonly<{
@@ -15,34 +15,31 @@ export default function BlogLayout({ children, page }: Readonly<{
 
   const pathname = usePathname();
 
-  const { categories, posts, title } = page ?? {};
+  const { categories, title } = page ?? {};
 
   if (pathname === '/blog' || pathname.includes('/blog/category/')) return (
-    <main className='overflow-hidden md:overflow-auto'>
-      <div className='px-4 xl:px-10 pattern-bg'>
-        <Container className='px-4 pt-[calc(8rem+var(--announcement-bar-height,0px))] md:pt-[calc(10rem+var(--announcement-bar-height,0px))] pb-14 md:pb-28 border-x border-dashed'>
-          <Heading tag="h1" size="xxxl" className='w-fit'>
-            {title}
-          </Heading>
-          {(pathname === '/blog' || pathname.includes('/blog/category/')) && (
-            <BlogToolbar categories={categories} posts={posts} />
-          )}
-          {children}
-        </Container>
-      </div>
-      <PageBuilder
-        id={page?._id ?? ''}
-        type={page?._type ?? ''}
-        pageBuilder={page?.pageBuilder ?? []}
+    <ArchiveShell
+      after={
+        <PageBuilder
+          id={page?._id ?? ''}
+          type={page?._type ?? ''}
+          pageBuilder={page?.pageBuilder ?? []}
+        />
+      }
+    >
+      <ArchiveHeader 
+        title={title}
+        categories={categories}
+        basePath='/blog'
+        allCategoriesLabel='All Posts'
       />
-    </main>
+      {children}
+    </ArchiveShell>
   )
 
   return (
-    <main className='pt-[calc(8rem+var(--announcement-bar-height,0px))] md:pt-[calc(10rem+var(--announcement-bar-height,0px))] pb-10 xl:pb-16 pattern-bg'>
-      <Container>
-        {children}
-      </Container>
-    </main>
+    <BlogPostShell>
+      {children}
+    </BlogPostShell>
   )
 };

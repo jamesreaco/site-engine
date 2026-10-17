@@ -18,21 +18,18 @@ function HeroSkeleton() {
   return (
     <section className='px-4 md:px-10 pattern-bg border-b border-b-gray-200/60'>
       <Container className='pb-7 md:pb-12 space-y-10 xl:-space-y-6 border-x border-dashed'>
-        <div className='pt-[calc(9rem+var(--announcement-bar-height,0px))] md:pt-[calc(13rem+var(--announcement-bar-height,0px))] pb-6 md:pb-24 xl:pb-36 grid grid-cols-12 gap-3 md:gap-6 xl:gap-14 md:px-14 md:border-x md:border-dashed'>
-          <div className='col-span-12 xl:col-span-7 space-y-2 md:space-y-3'>
-            <Skeleton className='h-9 md:h-12 w-full md:max-w-[40rem]' />
-            <Skeleton className='h-9 md:h-12 w-[80%] md:max-w-[32rem]' />
+        <div className='pt-[calc(9rem+var(--announcement-bar-height,0px))] md:pt-[calc(13rem+var(--announcement-bar-height,0px))] flex flex-col justify-center items-center pb-6 md:pb-24 xl:pb-40 md:px-14 md:border-x md:border-dashed'>
+          <div className='w-full md:max-w-[50rem] flex flex-col items-center space-y-2 md:space-y-[0.6rem]'>
+            <Skeleton className='h-8 md:h-[4.2rem] w-full' />
+            <Skeleton className='h-8 md:h-[4.2rem] w-[75%]' />
           </div>
-          <div className='col-span-12 xl:col-span-5'>
-            <div className='mt-3 space-y-2'>
-              <Skeleton className='h-4 md:h-5 w-full bg-gray-100' />
-              <Skeleton className='h-4 md:h-5 w-[95%] bg-gray-100' />
-              <Skeleton className='h-4 md:h-5 w-[70%] bg-gray-100' />
-            </div>
-            <div className='mt-8 md:mt-10 flex items-center gap-3'>
-              <Skeleton className='h-9 md:h-10 w-32' />
-              <Skeleton className='h-9 md:h-10 w-40' />
-            </div>
+          <div className='mt-6 md:mt-9 w-full md:max-w-[36rem] flex flex-col items-center space-y-2'>
+            <Skeleton className='h-4 md:h-5 w-full bg-gray-100' />
+            <Skeleton className='h-4 md:h-5 w-[85%] bg-gray-100' />
+          </div>
+          <div className='mt-8 md:mt-11 flex items-center gap-2.5'>
+            <Skeleton className='h-9 md:h-10 w-28 rounded-lg' />
+            <Skeleton className='h-9 md:h-10 w-32 rounded-lg' />
           </div>
         </div>
         <div className='p-4 md:p-6 border border-dashed rounded-3xl md:rounded-4xl pattern-bg--2'>

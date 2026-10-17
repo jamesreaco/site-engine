@@ -1,7 +1,9 @@
+import { Suspense } from 'react';
 import { Metadata } from 'next';
 import { processMetadata } from '@/lib/utils';
 import { sanityFetch } from '@/sanity/lib/live';
 import PostGrid from '@/components/blog/PostGrid';
+import FilteredPostGrid from '@/components/blog/FilteredPostGrid';
 import { JsonLd } from '@/components/shared/JsonLd';
 import { itemListSchema, webPageSchema } from '@/lib/json-ld';
 import { BlogPageQueryResult } from "../../../../sanity.types";
@@ -43,7 +45,9 @@ export default async function BlogArchivePage() {
           path: '/blog' 
         })} />
       )}
-      <PostGrid posts={posts} />
+      <Suspense fallback={<PostGrid posts={posts} />}>
+        <FilteredPostGrid posts={posts} />
+      </Suspense>
     </>
   )
 };

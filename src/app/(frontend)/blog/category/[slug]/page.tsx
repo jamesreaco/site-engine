@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
-import { CircleSlash } from 'lucide-react';
 import { sanityFetch } from '@/sanity/lib/live';
 import PostGrid from '@/components/blog/PostGrid';
 import { JsonLd } from '@/components/shared/JsonLd';
+import ArchiveEmptyState from '@/components/shared/archive/ArchiveEmptyState';
 import { itemListSchema, webPageSchema } from '@/lib/json-ld';
 import { postCategoryBySlugQuery, postSlugsQuery, postsByCategoryQuery } from '@/sanity/lib/queries/documents/post';
 
@@ -87,14 +87,9 @@ export default async function PostsByCategoryPage(props: {
     return (
       <>
         {jsonLd}
-        <div className="py-20 flex items-center justify-center gap-2 border border-dashed rounded-3xl text-center text-gray-600 bg-white">
-          <CircleSlash  
-            size={20} 
-            className='text-red-500' /> 
-            <span className='font-medium antialiased'>
-              No posts found in this category.
-            </span>
-        </div>
+        <ArchiveEmptyState>
+          No posts found in this category.
+        </ArchiveEmptyState>
       </>
     )
   };

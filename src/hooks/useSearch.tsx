@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 
-interface Searchable {
+export interface Searchable {
   _id: string;
   title: string | null;
   excerpt: string | null;

@@ -11,7 +11,7 @@ export default function ButtonRenderer({ buttons, classNames }: {
   if (!buttons?.length) return null;
 
   return (
-    <div className={cn('flex items-center gap-3 list-none', classNames)}>
+    <div className={cn('flex items-center gap-2.5 list-none', classNames)}>
       {buttons.map((button) => (
         <Button
           key={`button-${button?._key}`}
@@ -24,6 +24,7 @@ export default function ButtonRenderer({ buttons, classNames }: {
           fileUrl={stegaClean(button?.buttonFileUrl)?.asset?.url}
           anchorLocation={stegaClean(button?.buttonAnchorLocation) ?? 'currentPage'}
           anchorId={stegaClean(button?.buttonAnchorId) ?? ''}
+          disableIcon={true}
           className={cn('w-auto', { 
             'w-full': stegaClean(button?.buttonWidth) === 'fullWidth' 
           })}

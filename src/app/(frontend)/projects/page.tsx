@@ -1,8 +1,10 @@
+import { Suspense } from 'react';
 import { Metadata } from 'next';
 import { processMetadata } from '@/lib/utils';
 import { sanityFetch } from '@/sanity/lib/live';
 import { JsonLd } from '@/components/shared/JsonLd';
 import ProjectGrid from '@/components/projects/ProjectGrid';
+import FilteredProjectGrid from '@/components/projects/FilteredProjectGrid';
 import { itemListSchema, webPageSchema } from '@/lib/json-ld';
 import { ProjectsPageQueryResult } from '../../../../sanity.types';
 import { allProjectsQuery, projectsPageQuery } from '@/sanity/lib/queries/documents/project';
@@ -43,7 +45,9 @@ export default async function ProjectsPage() {
           path: '/projects' 
         })} />
       )}
-      <ProjectGrid projects={projects} />
+      <Suspense fallback={<ProjectGrid projects={projects} />}>
+        <FilteredProjectGrid projects={projects} />
+      </Suspense>
     </>
   )
 };

@@ -49,7 +49,7 @@ export default async function RootLayout({ children }: Readonly<{
   );
   
   return (
-    <body>
+    <body className='overflow-x-hidden'>
       <JsonLd data={organizationSchema(settings)} />
       <JsonLd data={websiteSchema(settings)} />
       <WebsiteLayout

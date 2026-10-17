@@ -37,12 +37,9 @@ function PostCardSkeleton() {
           <Skeleton className='h-4 w-[90%] bg-gray-100' />
           <Skeleton className='h-4 w-[70%] bg-gray-100' />
         </div>
-        <div className='mt-5 md:mt-6 flex items-center justify-between'>
-          <div className='flex items-center gap-3.5'>
-            <Skeleton className='h-[26px] w-[26px] shrink-0' />
-            <Skeleton className='h-4 w-24' />
-          </div>
-          <Skeleton className='h-[18px] w-[18px] rounded' />
+        <div className='mt-5 md:mt-6 flex items-center gap-3.5'>
+          <Skeleton className='h-[26px] w-[26px] shrink-0' />
+          <Skeleton className='h-4 w-24' />
         </div>
       </div>
     </article>

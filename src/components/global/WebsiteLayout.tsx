@@ -39,7 +39,7 @@ export default function WebsiteLayout({
         navigationSettings={navigationSettings}
         announcementBarSettings={announcementBarSettings}
       />
-      <main className='overflow-hidden'>
+      <main className='min-w-0 overflow-x-clip'>
         {children}
       </main>
       <Footer 
